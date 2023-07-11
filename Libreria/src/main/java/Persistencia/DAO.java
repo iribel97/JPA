@@ -19,7 +19,7 @@ public class DAO<T> {
     
     // Este método nos permite conectar con la base de datos
     // se verifica si la conexión está realizada, en caso que
-    // no esté realizada, se realiza en la línea 24.
+    // no esté realizada, se realiza en la línea 25.
     protected void conectar() {
         if (!em.isOpen()) {
             em = EMF.createEntityManager();
@@ -37,7 +37,7 @@ public class DAO<T> {
     
     // este método nos permite persistir un objeto en la base de datos.
     // Toma como parámetro el objeto a persistir, vemos que es genérico, por
-    // lo que puede aceptar cualquier tipo de objeto (Dirección, Mastoca, Persona)
+    // lo que puede aceptar cualquier tipo de objeto
     protected void guardar(T objeto){
         conectar();
         em.getTransaction().begin();
