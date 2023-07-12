@@ -1,0 +1,10 @@
+Entities\Editorial_.class
+Persistences\DAO.class
+Entities\Author_.class
+Services\AuthorService.class
+Entities\Author.class
+Entities\Book.class
+Entities\Book_.class
+com\mycompany\mylibrary\MyLibrary.class
+Persistences\AuthorDAO.class
+Entities\Editorial.class
