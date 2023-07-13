@@ -6,13 +6,14 @@ package Services;
 
 import Entities.Author;
 import Persistences.AuthorDAO;
+import java.util.List;
 import java.util.Scanner;
 
 /**
  *
  * @author irina
  */
-public class AuthorService {
+public class AuthorService extends Printable{
     
     AuthorDAO dao;
     
@@ -22,14 +23,30 @@ public class AuthorService {
         this.dao = new AuthorDAO();
     }
     
-    public void insertAutor(){
-
-        Author autor = new Author();
+    public void insertAutor() throws Exception{
         
+        boolean flag = false;
+      
+        List<Author> authors = dao.selectAutor();
+       
+        Author autor = new Author();
+      
         System.out.print(" INGRESE EL NOMBRE DEL AUTOR: ");
         autor.setName(scaner.nextLine());
         
-        dao.insert(autor);
+        if (!authors.isEmpty()) {
+            for (Author aux : authors) {
+                if (aux.getName().equalsIgnoreCase(autor.getName())) {
+                    flag = true;
+                    System.out.println("AUTOR YA EXISTENTE");
+                }
+            }
+        
+        }
+        
+        if (!flag) {
+            dao.insert(autor);
+        }
         
     }
     

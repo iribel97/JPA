@@ -19,14 +19,14 @@ public class AuthorDAO extends DAO<Author>{
     }
 
     //METODO PARA ELIMINAR UN AUTOR --------------------------------------------
-    protected void delete(int idAuthor) {
+    public void delete(int idAuthor) {
         super.delete(em.find(Author.class, idAuthor));
     }
     
 
     //METODO PARA MODIFICAR ----------------------------------------------------
     @Override   
-    protected void update(Author objeto) {
+    public void update(Author objeto) {
         super.update(objeto);
 
     }
@@ -52,17 +52,20 @@ public class AuthorDAO extends DAO<Author>{
             return autor;
         } catch (Exception e) {
             throw new Exception("ERROR EN DAO AUTOR, METODO selectAutorByID: ", e);
+        } finally{
+            desconect();
         }
     }
     
     //SELECCIONAR TODOS LOS AUTORES DE LA TABLA --------------------------------
     public List<Author> selectAutor() throws Exception{
         try {
+            
             //se conecta a la base de datos
             conect();
             
             //pedimos por medio de un query todos los autores
-            List<Author> autores = em.createQuery("SELECT a FROM Autor a").getResultList();
+            List<Author> autores = em.createQuery("SELECT a FROM Author a").getResultList();
             
             //desconectamos de la base de datos
             desconect();
@@ -70,7 +73,7 @@ public class AuthorDAO extends DAO<Author>{
             //retornamos la list
             return autores;
         } catch (Exception e) {
-            throw new Exception("EEROR EN DAO AUTOR, METODO selectAutor: ", e);
+            throw new Exception("ERROR IN DAO AUTHOR, METHOD selectAutor: ", e);
         }
     }
 }

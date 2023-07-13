@@ -4,7 +4,9 @@
 
 package com.mycompany.mylibrary;
 
-import Services.AuthorService;
+import Services.*;
+
+
 
 /**
  *
@@ -12,9 +14,8 @@ import Services.AuthorService;
  */
 public class MyLibrary {
 
-    public static void main(String[] args) {
-        AuthorService servA = new AuthorService();
-        
-        servA.insertAutor();
+    public static void main(String[] args) throws Exception {
+        Service srev = new Service();
+        srev.menuServ();
     }
 }
