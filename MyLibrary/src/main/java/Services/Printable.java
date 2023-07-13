@@ -33,4 +33,10 @@ public abstract class Printable {
         System.out.print("   SELECT AN OPTION : ");
     }
     
+    protected void printOpc1(){
+        System.out.println("|-------------------------------------------------|");
+        System.out.println("|                  INSERT AUTHOR                  |");
+        System.out.println("|-------------------------------------------------|");
+    }
+    
 }
