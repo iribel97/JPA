@@ -14,7 +14,7 @@ import java.util.List;
 public class BookDAO extends DAO<Book>{
 
     @Override
-    protected void insert(Book objeto) {
+    public void insert(Book objeto) {
         super.insert(objeto);
     }
     

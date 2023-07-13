@@ -53,7 +53,28 @@ public class EditorialService extends Printable{
         }
     }
     
+    //IMPRIMIR EDITORIALES ---------------------------------------------------------
+    public void showEditorials() throws Exception{
+        List<Editorial> editoriales = dao.selectEditorial();
+        String vID = "___ ID ___", vName = "________________ NAME ________________";
+        System.out.println("|-------------------------------------------------|");
+        System.out.println("|                    EDITORIALS                   |");
+        System.out.println("|-------------------------------------------------|");
+        System.out.println("|"+vID+"|"+vName+"|");
+        for(Editorial aux : editoriales){
+            imprimirCasilla(String.valueOf(aux.getId()), vID);
+            imprimirCasilla(aux.getName(), vName);
+            System.out.println("|");
+        }
+        System.out.println("|-------------------------------------------------|");
+    }
     
     
+    //RETORNAR VALORES ---------------------------------------------------------
+    
+    /*RETORNAR UNA EDITORIAL*/
+    public Editorial selectOneEditorial(int idE) throws Exception{
+        return dao.selectEditorialByID(idE);
+    }
     
 }

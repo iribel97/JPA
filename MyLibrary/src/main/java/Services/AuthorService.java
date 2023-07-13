@@ -64,4 +64,29 @@ public class AuthorService extends Printable{
     }
     
     
+    //IMPRIMIR AUTORES ---------------------------------------------------------
+    public void showAuthors() throws Exception{
+        List<Author> authors = dao.selectAutor();
+        String vID = "___ ID ___", vName = "________________ NAME ________________";
+        System.out.println("|-------------------------------------------------|");
+        System.out.println("|                     AUTHORS                     |");
+        System.out.println("|-------------------------------------------------|");
+        System.out.println("|"+vID+"|"+vName+"|");
+        for(Author aux : authors){
+            imprimirCasilla(String.valueOf(aux.getId()), vID);
+            imprimirCasilla(aux.getName(), vName);
+            System.out.println("|");
+        }
+        System.out.println("|-------------------------------------------------|");
+    }
+    
+    //RETORNAR VALORES ---------------------------------------------------------
+    
+    /*RETORNAR UN AUTOR*/
+    public Author selectOneAuthor(int idA) throws Exception{
+        return dao.selectAutorByID(idA);
+    }
+    
+    
+    
 }

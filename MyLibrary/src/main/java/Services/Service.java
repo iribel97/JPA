@@ -21,6 +21,7 @@ public class Service extends Printable {
         int opc = 0;
         AuthorService servA = new AuthorService();
         EditorialService servE = new EditorialService();
+        BookService servB = new BookService();
 
         //Repetir el menu mientras la opc digitada sea mayor de 14
         do {
@@ -44,10 +45,10 @@ public class Service extends Printable {
                 servA.insertAutor();
                 break;
             case 2:
-
+                servE.insertEditorial();
                 break;
             case 3:
-
+                servB.insertBook();
                 break;
             case 4:
 

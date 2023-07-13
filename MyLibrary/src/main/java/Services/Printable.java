@@ -15,8 +15,8 @@ public abstract class Printable {
         System.out.println("|                     OPTIONS                     |");
         System.out.println("|-------------------------------------------------|");
         System.out.println("|  1.- INSERT AUTHOR                              |");  //OK
-        System.out.println("|  2.- INSERT EDITORIAL                           |");
-        System.out.println("|  3.- INSERT BOOK                                |");
+        System.out.println("|  2.- INSERT EDITORIAL                           |");  //OK
+        System.out.println("|  3.- INSERT BOOK                                |");  //OK
         System.out.println("|  4.- DELETE AUTHOR                              |");
         System.out.println("|  5.- DELETE EDITORIAL                           |");
         System.out.println("|  6.- DELETE BOOK                                |");
@@ -43,5 +43,40 @@ public abstract class Printable {
         System.out.println("|-------------------------------------------------|");
         System.out.println("|                INSERT EDITORIAL                 |");
         System.out.println("|-------------------------------------------------|");
+    }
+    
+    protected void printOpc3(){
+        System.out.println("|-------------------------------------------------|");
+        System.out.println("|                   INSERT BOOK                   |");
+        System.out.println("|-------------------------------------------------|");
+    }
+    
+    // CASILLAS ----------------------------------------------------------------
+    public void imprimirCasilla(String nombre, String variable) {
+        int tamanio;
+        String vAux;
+        System.out.print("|");
+
+        vAux = nombre;
+        tamanio = vAux.length();
+
+        if (tamanio % 2 == 0) {
+            for (int i = 0; i < (variable.length() - tamanio) / 2; i++) {
+                System.out.print(" ");
+            }
+            System.out.print(vAux);
+            for (int i = 0; i < (variable.length() - tamanio+1) / 2; i++) {
+                System.out.print(" ");
+            }
+        } else {
+            tamanio--;
+            for (int i = 0; i < (variable.length() - tamanio) / 2; i++) {
+                System.out.print(" ");
+            }
+            System.out.print(vAux);
+            for (int i = 0; i < (variable.length() - tamanio - 1) / 2; i++) {
+                System.out.print(" ");
+            }
+        }
     }
 }

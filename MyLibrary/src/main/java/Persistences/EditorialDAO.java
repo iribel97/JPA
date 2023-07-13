@@ -18,6 +18,30 @@ public class EditorialDAO extends DAO<Editorial>{
         super.insert(objeto);
     }
     
+    //ENCONTRAR UN EDITORIAL POR ID --------------------------------------------
+    public Editorial selectEditorialByID(int idEditorial) throws Exception{
+        try {
+            //Caso de que idAutor sea null
+            if (idEditorial == 0) {
+                throw new Exception("Debe de especificar el identificador del autor");
+            }
+            
+            //CONECTARSE A LA BASE DE DATOS
+            conect();
+
+            //BUSCAR EL AUTOR
+            Editorial editorial = em.find(Editorial.class, idEditorial);
+
+            //UNA VEZ QUE SE OPTIENE EL AUTOR SE DESCONECTA LA BASE DE DATOS
+            desconect();
+
+            //RETORNAMOS EL AUTOR
+            return editorial;
+        } catch (Exception e) {
+            throw new Exception("ERROR EN DAO AUTOR, METODO selectAutorByID: ", e);
+        }
+    }
+    
     //DEVOLVER LA LISTA DE EDITORIALES -----------------------------------------
     public List<Editorial> selectEditorial() throws Exception{
         try {
