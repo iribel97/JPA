@@ -64,6 +64,7 @@ public class DAO<T> {
     protected void delete(T objeto){
         conect();
         em.getTransaction().begin();
+        objeto = em.merge(objeto);
         em.remove(objeto);
         em.getTransaction().commit();
         desconect();

@@ -17,7 +17,7 @@ public abstract class Printable {
         System.out.println("|  1.- INSERT AUTHOR                              |");  //OK
         System.out.println("|  2.- INSERT EDITORIAL                           |");  //OK
         System.out.println("|  3.- INSERT BOOK                                |");  //OK
-        System.out.println("|  4.- DELETE AUTHOR                              |");
+        System.out.println("|  4.- DELETE AUTHOR                              |");  //OK
         System.out.println("|  5.- DELETE EDITORIAL                           |");
         System.out.println("|  6.- DELETE BOOK                                |");
         System.out.println("|  7.- UPDATE AUTHOR                              |");
@@ -48,6 +48,12 @@ public abstract class Printable {
     protected void printOpc3(){
         System.out.println("|-------------------------------------------------|");
         System.out.println("|                   INSERT BOOK                   |");
+        System.out.println("|-------------------------------------------------|");
+    }
+    
+    protected void printOpc4(){
+        System.out.println("|-------------------------------------------------|");
+        System.out.println("|                  DELETE AUTHOR                  |");
         System.out.println("|-------------------------------------------------|");
     }
     

@@ -51,7 +51,7 @@ public class Service extends Printable {
                 servB.insertBook();
                 break;
             case 4:
-
+                servA.deletAuthor();
                 break;
             case 5:
 

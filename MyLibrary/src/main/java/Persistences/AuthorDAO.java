@@ -19,8 +19,8 @@ public class AuthorDAO extends DAO<Author>{
     }
 
     //METODO PARA ELIMINAR UN AUTOR --------------------------------------------
-    public void delete(int idAuthor) {
-        super.delete(em.find(Author.class, idAuthor));
+    public void delete(int idAuthor) throws Exception {
+        super.delete(selectAutorByID(idAuthor));
     }
     
 
