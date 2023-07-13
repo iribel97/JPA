@@ -13,7 +13,7 @@ import java.util.Scanner;
  *
  * @author irina
  */
-public class EditorialService {
+public class EditorialService extends Printable{
     Scanner scaner = new Scanner(System.in);
     EditorialDAO dao;
 
@@ -28,20 +28,27 @@ public class EditorialService {
         
         Editorial editorial = new Editorial();
         
-        System.out.print(" INGRESE EL NOMBRE DE LA EDITORIAL: ");
+        printOpc2();
+        
+        System.out.print(" EDITORIAL'S NAME: ");
         editorial.setName(scaner.nextLine());
         
         if (!editoriales.isEmpty()) {
             for (Editorial aux : editoriales) {
                 if (aux.getName().equalsIgnoreCase(editorial.getName())) {
                     flag = true;
-                    System.out.println("EDITORIAL YA EXISTENTE");
+                    System.out.println("|-------------------------------------------------|");
+                    System.out.println("|   EDITORIAL ALREDY EXISTS                       |");
+                    System.out.println("|-------------------------------------------------|");
                 }
             }
         
         }
         
         if (!flag) {
+            System.out.println("|-------------------------------------------------|");
+            System.out.println("|  EDITORIAL SUCCESSFULLY ADDED TO THE DATABASE   |");
+            System.out.println("|-------------------------------------------------|");
             dao.insert(editorial);
         }
     }

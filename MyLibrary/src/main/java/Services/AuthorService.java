@@ -23,6 +23,7 @@ public class AuthorService extends Printable{
         this.dao = new AuthorDAO();
     }
     
+    //OPCION 1 DEL MENU
     public void insertAutor() throws Exception{
         
         boolean flag = false;
@@ -56,7 +57,7 @@ public class AuthorService extends Printable{
             System.out.println("|-------------------------------------------------|");
             System.out.println("|  AUTHOR SUCCESSFULLY ADDED TO THE DATABASE      |");
             System.out.println("|-------------------------------------------------|");
-            //POR NO QUE PROCEDE A AGREGARLO A LA BASE DE DATOS
+            //POR LO QUE PROCEDE A AGREGARLO A LA BASE DE DATOS
             dao.insert(autor);
         }
         

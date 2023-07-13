@@ -16,6 +16,11 @@ public class MyLibrary {
 
     public static void main(String[] args) throws Exception {
         Service srev = new Service();
-        srev.menuServ();
+        boolean flag;
+        do {
+            flag = srev.menuServ();
+            System.out.printf("\n\n\n");
+        } while (flag);
+        
     }
 }

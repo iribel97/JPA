@@ -18,68 +18,70 @@ public class Service extends Printable {
     }
 
     public boolean menuServ() throws Exception {
-        int opc;
+        int opc = 0;
         AuthorService servA = new AuthorService();
         EditorialService servE = new EditorialService();
-        try {
 
-            //Repetir el menu mientras la opc digitada sea mayor de 14
-            do {
+        //Repetir el menu mientras la opc digitada sea mayor de 14
+        do {
+            try {
                 menu();
                 opc = scaner.nextInt();
 
                 if (opc > 15) {
                     System.out.println("OPTION DOES NOT EXIST, TRY AGAIN");
                 }
-            } while (opc > 14);
+            } catch (Exception e) {
+                opc = 16;
+                System.out.println("WRONGLY TYPED OPTION");
+                scaner.nextLine();
 
-            switch (opc) {
-                case 1:
-                    servA.insertAutor();
-                    break;
-                case 2:
+            } 
+        } while (opc > 15);
 
-                    break;
-                case 3:
+        switch (opc) {
+            case 1:
+                servA.insertAutor();
+                break;
+            case 2:
 
-                    break;
-                case 4:
+                break;
+            case 3:
 
-                    break;
-                case 5:
+                break;
+            case 4:
 
-                    break;
-                case 6:
+                break;
+            case 5:
 
-                    break;
-                case 7:
+                break;
+            case 6:
 
-                    break;
-                case 8:
+                break;
+            case 7:
 
-                    break;
-                case 9:
+                break;
+            case 8:
 
-                    break;
-                case 10:
+                break;
+            case 9:
 
-                    break;
-                case 11:
+                break;
+            case 10:
 
-                    break;
-                case 12:
+                break;
+            case 11:
 
-                    break;
-                case 13:
+                break;
+            case 12:
 
-                    break;
+                break;
+            case 13:
 
-            }
-        } catch (Exception e) {
-            opc = 16;
-            throw new Exception("WRONGLY TYPED OPTION");
+                break;
 
         }
+
         return opc != 15;
     }
 

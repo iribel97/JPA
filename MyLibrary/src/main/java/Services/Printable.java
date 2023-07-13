@@ -39,4 +39,9 @@ public abstract class Printable {
         System.out.println("|-------------------------------------------------|");
     }
     
+    protected void printOpc2(){
+        System.out.println("|-------------------------------------------------|");
+        System.out.println("|                INSERT EDITORIAL                 |");
+        System.out.println("|-------------------------------------------------|");
+    }
 }
