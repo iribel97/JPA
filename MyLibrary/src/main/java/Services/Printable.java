@@ -78,6 +78,12 @@ public abstract class Printable {
         System.out.println("|-------------------------------------------------|");
     }
     
+    protected void printOpc8(){
+        System.out.println("|-------------------------------------------------|");
+        System.out.println("|                 UPDATE EDITORIAL                |");
+        System.out.println("|-------------------------------------------------|");
+    }
+    
     // CASILLAS ----------------------------------------------------------------
     public void imprimirCasilla(String nombre, String variable) {
         int tamanio;

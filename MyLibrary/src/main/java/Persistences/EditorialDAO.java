@@ -23,6 +23,11 @@ public class EditorialDAO extends DAO<Editorial>{
         super.delete(selectEditorialByID(idEditorial));
     }
     
+    //METODO ACTUALIZAR EDITORIAL ----------------------------------------------
+    @Override
+    public void update(Editorial objeto) {
+        super.update(objeto); 
+    }
     
     
     //ENCONTRAR UN EDITORIAL POR ID --------------------------------------------

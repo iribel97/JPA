@@ -82,7 +82,7 @@ public class AuthorService extends Printable {
             autor.setName(scaner.nextLine());
             dao.update(autor);
             System.out.println("|-------------------------------------------------|");
-            System.out.println("|  AUTHOR SUCCESSFULLY UPDATE FROM THE DATABASE   |");
+            System.out.println("|  AUTHOR SUCCESSFULLY UPDATED FROM THE DATABASE  |");
             System.out.println("|-------------------------------------------------|");
         }else{
             System.out.println("|-------------------------------------------------|");

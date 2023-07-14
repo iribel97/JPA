@@ -57,7 +57,7 @@ public class EditorialService extends Printable {
         //INSTANCIAMOS OBJETO DE TIPO EDITORIAL
         Editorial editorial = dao.selectEditorialByID(scaner.nextInt());
 
-        if (findEditorial(editorial)) {
+        if (editorial != null) {
             dao.delete(editorial.getId());
             System.out.println("|-------------------------------------------------|");
             System.out.println("|EDITORIAL SUCCESSFULLY DELETED FROM THE DATABASE |");
@@ -68,6 +68,31 @@ public class EditorialService extends Printable {
             System.out.println("|-------------------------------------------------|");
         }
 
+    }
+    
+    //OPCION 8 DEL MENU
+    public void updateEditorial() throws Exception{
+        
+        printOpc8();
+        showEditorials();
+        
+        //PEDIR AL USUARIO
+        System.out.print("   - SELECT EDITORIAL ID: ");
+
+        //INSTANCIAMOS OBJETO DE TIPO EDITORIAL
+        Editorial editorial = dao.selectEditorialByID(scaner.nextInt());
+        
+        if (editorial != null) {
+            System.out.println("|-------------------------------------------------|");
+            System.out.print("    - EDITORIAL'S NAME: ");
+            scaner.nextLine();
+            editorial.setName(scaner.nextLine());
+            dao.update(editorial);
+            System.out.println("|-------------------------------------------------|");
+            System.out.println("|EDITORIAL SUCCESSFULLY UPDATED FROM THE DATABASE |");
+            System.out.println("|-------------------------------------------------|");
+            
+        }
     }
 
     //IMPRIMIR EDITORIALES ---------------------------------------------------------
