@@ -56,7 +56,7 @@ public class AuthorService extends Printable {
         //INSTANCIAMOS UN OBJETO DE TIPO AUTOR
         Author autor = dao.selectAutorByID(scaner.nextInt());
         //VERIFICAR QUE EL USUARIO EXISTA
-        if (findAuthor(autor)) {
+        if (autor != null) {
             dao.delete(autor.getId());
             System.out.println("|-------------------------------------------------|");
             System.out.println("|  AUTHOR SUCCESSFULLY DELETED FROM THE DATABASE  |");
@@ -66,6 +66,30 @@ public class AuthorService extends Printable {
             System.out.println("|  THE AUTHOR DOES NOT EXIST, PLEASE TRY AGAIN    |");
             System.out.println("|-------------------------------------------------|");
         }
+    }
+
+    //OPCION 7 DEL MENU
+    public void updateAuthor() throws Exception {
+        printOpc7();
+        showAuthors();
+        System.out.print("   - SELECT THE AUTHOR ID: ");
+        //INSTANCIAMOS UN OBJETO DE TIPO AUTOR
+        Author autor = dao.selectAutorByID(scaner.nextInt());
+        if (autor != null) {
+            System.out.println("|-------------------------------------------------|");
+            scaner.nextLine();
+            System.out.print("    - AUTHOR'S NAME: ");
+            autor.setName(scaner.nextLine());
+            dao.update(autor);
+            System.out.println("|-------------------------------------------------|");
+            System.out.println("|  AUTHOR SUCCESSFULLY UPDATE FROM THE DATABASE   |");
+            System.out.println("|-------------------------------------------------|");
+        }else{
+            System.out.println("|-------------------------------------------------|");
+            System.out.println("|  THE AUTHOR DOES NOT EXIST, PLEASE TRY AGAIN    |");
+            System.out.println("|-------------------------------------------------|");
+        }
+
     }
 
     //IMPRIMIR AUTORES ---------------------------------------------------------

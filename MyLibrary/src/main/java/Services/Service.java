@@ -60,7 +60,7 @@ public class Service extends Printable {
                 servB.deleteBook();
                 break;
             case 7:
-
+                servA.updateAuthor();
                 break;
             case 8:
 
