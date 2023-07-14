@@ -57,6 +57,12 @@ public abstract class Printable {
         System.out.println("|-------------------------------------------------|");
     }
     
+    protected void printOpc5(){
+        System.out.println("|-------------------------------------------------|");
+        System.out.println("|                 DELETE EDITORIAL                |");
+        System.out.println("|-------------------------------------------------|");
+    }
+    
     // CASILLAS ----------------------------------------------------------------
     public void imprimirCasilla(String nombre, String variable) {
         int tamanio;

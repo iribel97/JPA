@@ -54,7 +54,7 @@ public class Service extends Printable {
                 servA.deletAuthor();
                 break;
             case 5:
-
+                servE.deleteEditorial();
                 break;
             case 6:
 

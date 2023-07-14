@@ -26,39 +26,23 @@ public class AuthorService extends Printable {
     //OPCION 1 DEL MENU
     public void insertAutor() throws Exception {
 
-        boolean flag = false;
-
-        List<Author> authors = dao.selectAutor();
-
         Author autor = new Author();
         printOpc1();
         System.out.print(" AUTHOR'S NAME: ");
         autor.setName(scaner.nextLine());
 
-        //COMPROBAMOS QUE LA TABLA AUTOR EN LA BASE DE DATOS NO SE ENCUENTRA VACIA
-        if (!authors.isEmpty()) {
-            //BUCLE FOREACH PARA RECORRER LA TABLA
-            for (Author aux : authors) {
-                //COMPROBAR SI EL NOMBRE INGRESADO POR EL USUARIO EXISTE
-                if (aux.getName().equalsIgnoreCase(autor.getName())) {
-                    //CASO DE EXISTIR BOTA UN MENSAJE Y LA VARIABLE BOOLEANA SE VUELVE TRUE
-                    flag = true;
-                    System.out.println("|-------------------------------------------------|");
-                    System.out.println("|   AUTHOR ALREDY EXISTS                          |");
-                    System.out.println("|-------------------------------------------------|");
-                }
-            }
-
-        }
-
         //SI LA VARIABLE BOOLEANA SE MANTUVO FALSE, SIGNIFICA QUE EL USUARIO NO EXISTE
-        if (!flag) {
-
+        if (!findAuthor(autor)) {
+            //POR LO QUE PROCEDE A AGREGARLO A LA BASE DE DATOS
+            dao.insert(autor);
             System.out.println("|-------------------------------------------------|");
             System.out.println("|  AUTHOR SUCCESSFULLY ADDED TO THE DATABASE      |");
             System.out.println("|-------------------------------------------------|");
-            //POR LO QUE PROCEDE A AGREGARLO A LA BASE DE DATOS
-            dao.insert(autor);
+
+        } else {
+            System.out.println("|-------------------------------------------------|");
+            System.out.println("|   AUTHOR ALREDY EXISTS                          |");
+            System.out.println("|-------------------------------------------------|");
         }
 
     }
@@ -69,10 +53,21 @@ public class AuthorService extends Printable {
         printOpc4();
         showAuthors();
         System.out.print("   - SELECT THE AUTHOR ID: ");
-        //INSTANCIAMOS UN OBJATO DE TIPO AUTOR
+        //INSTANCIAMOS UN OBJETO DE TIPO AUTOR
+        Author autor = dao.selectAutorByID(scaner.nextInt());
+        //VERIFICAR QUE EL USUARIO EXISTA
+        if (findAuthor(autor)) {
+            dao.delete(autor.getId());
+            System.out.println("|-------------------------------------------------|");
+            System.out.println("|  AUTHOR SUCCESSFULLY DELETED FROM THE DATABASE  |");
+            System.out.println("|-------------------------------------------------|");
+        } else {
+            System.out.println("|-------------------------------------------------|");
+            System.out.println("|  THE AUTHOR DOES NOT EXIST, PLEASE TRY AGAIN    |");
+            System.out.println("|-------------------------------------------------|");
+        }
 
-        dao.delete(scaner.nextInt());
-
+        //dao.delete(scaner.nextInt());
     }
 
     //IMPRIMIR AUTORES ---------------------------------------------------------
@@ -95,6 +90,19 @@ public class AuthorService extends Printable {
     /*RETORNAR UN AUTOR*/
     public Author selectOneAuthor(int idA) throws Exception {
         return dao.selectAutorByID(idA);
+    }
+
+    /*VERIFICAR QUE EL AUTOR EXISTA*/
+    private boolean findAuthor(Author author) throws Exception {
+        List<Author> authors = dao.selectAutor();
+        if (!authors.isEmpty()) {
+            for (Author aux : authors) {
+                if (aux.getName().equalsIgnoreCase(author.getName())) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 }

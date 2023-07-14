@@ -12,11 +12,18 @@ import java.util.List;
  * @author irina
  */
 public class EditorialDAO extends DAO<Editorial>{
-
+    //METODO INSERTAR EDITORIAL ------------------------------------------------
     @Override
     public void insert(Editorial objeto) {
         super.insert(objeto);
     }
+
+    //METODO ELIMINAR EDITORIAL ------------------------------------------------
+    public void delete(int idEditorial) throws Exception {
+        super.delete(selectEditorialByID(idEditorial));
+    }
+    
+    
     
     //ENCONTRAR UN EDITORIAL POR ID --------------------------------------------
     public Editorial selectEditorialByID(int idEditorial) throws Exception{
