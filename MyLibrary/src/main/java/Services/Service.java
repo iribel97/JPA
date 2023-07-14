@@ -37,7 +37,7 @@ public class Service extends Printable {
                 System.out.println("WRONGLY TYPED OPTION");
                 scaner.nextLine();
 
-            } 
+            }
         } while (opc > 18);
 
         switch (opc) {
@@ -92,6 +92,12 @@ public class Service extends Printable {
             case 17:
                 servA.showAuthors();
                 break;
+
+        }
+        if (opc != 18) {
+            servA.updateRegister();
+            servE.updateRegister();
+            servB.updateRegister();
 
         }
 

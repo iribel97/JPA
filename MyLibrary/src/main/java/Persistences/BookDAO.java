@@ -100,7 +100,7 @@ public class BookDAO extends DAO<Book> {
             AuthorDAO daoA = new AuthorDAO();
             //SE INSTANCIA UN AUTOR PARA QUE SE GUARDE CON EL NOMBRE QUE PASA POR PARAMETRO EL USUARIO
             Author servA = daoA.selectAnAuthorByName(nombre);
-            
+
             //SI NO ES NULO
             if (servA != null) {
                 //se conecta a la base de datos
@@ -115,7 +115,7 @@ public class BookDAO extends DAO<Book> {
 
                 //retornamos la list
                 return books;
-            }else{
+            } else {
                 //EN CASO DE QUE SEA NULO, DEVOLVERA NULO
                 return null;
             }
@@ -124,7 +124,7 @@ public class BookDAO extends DAO<Book> {
             throw new Exception("ERROR EN DAO BOOK, METODO selectBookByTitle: ", e);
         }
     }
-    
+
     //DEVOLVER LIBROS POR EDITORIAL --------------------------------------------
     public List<Book> selectBookByEditorial(String nombre) throws Exception {
         try {
@@ -132,7 +132,7 @@ public class BookDAO extends DAO<Book> {
             EditorialDAO daoE = new EditorialDAO();
             //SE INSTANCIA UN AUTOR PARA QUE SE GUARDE CON EL NOMBRE QUE PASA POR PARAMETRO EL USUARIO
             Editorial servE = daoE.selectEditorialByName(nombre);
-            
+
             //SI NO ES NULO
             if (servE != null) {
                 //se conecta a la base de datos
@@ -147,7 +147,7 @@ public class BookDAO extends DAO<Book> {
 
                 //retornamos la list
                 return books;
-            }else{
+            } else {
                 //EN CASO DE QUE SEA NULO, DEVOLVERA NULO
                 return null;
             }
@@ -157,4 +157,51 @@ public class BookDAO extends DAO<Book> {
         }
     }
 
+    //CONTAR LIBROS POR AUTOR --------------------------------------------------
+    public int countBooksByAuthor(Author author) throws Exception {
+
+        try {
+            if (author == null) {
+                throw new Exception("YOU NEED TO ESPECIFICATE AN AUTHOR");
+            }
+
+            //se conecta a la base de datos
+            conect();
+            //pedimos por medio de un query todos los autores
+            List<Book> books = em.createQuery("SELECT b FROM Book b WHERE b.author = :nombreA", Book.class)
+                    .setParameter("nombreA", author)
+                    .getResultList();
+            //desconectamos de la base de datos
+            desconect();
+            //retornamos la cantidad de datos en la lista
+            return books.size();
+        } catch (Exception e) {
+            throw new Exception("ERROR EN DAO BOOK, METODO countBooksByAuthor: ", e);
+        }
+
+    }
+    
+    //CONTAR LIBROS POR EDITORIAL --------------------------------------------------
+    public int countBooksByEditorial(Editorial editorial) throws Exception {
+
+        try {
+            if (editorial == null) {
+                throw new Exception("YOU NEED TO ESPECIFICATE AN EDITORIAL");
+            }
+
+            //se conecta a la base de datos
+            conect();
+            //pedimos por medio de un query todos los autores
+            List<Book> books = em.createQuery("SELECT b FROM Book b WHERE b.editorial = :nombreE", Book.class)
+                        .setParameter("nombreE", editorial)
+                        .getResultList();
+            //desconectamos de la base de datos
+            desconect();
+            //retornamos la cantidad de datos en la lista
+            return books.size();
+        } catch (Exception e) {
+            throw new Exception("ERROR EN DAO BOOK, METODO countBooksByAuthor: ", e);
+        }
+
+    }
 }

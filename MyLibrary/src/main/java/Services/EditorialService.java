@@ -5,6 +5,7 @@
 package Services;
 
 import Entities.Editorial;
+import Persistences.BookDAO;
 import Persistences.EditorialDAO;
 import java.util.List;
 import java.util.Scanner;
@@ -69,19 +70,19 @@ public class EditorialService extends Printable {
         }
 
     }
-    
+
     //OPCION 8 DEL MENU
-    public void updateEditorial() throws Exception{
-        
+    public void updateEditorial() throws Exception {
+
         printOpc8();
         showEditorials();
-        
+
         //PEDIR AL USUARIO
         System.out.print("   - SELECT EDITORIAL ID: ");
 
         //INSTANCIAMOS OBJETO DE TIPO EDITORIAL
         Editorial editorial = dao.selectEditorialByID(scaner.nextInt());
-        
+
         if (editorial != null) {
             System.out.println("|-------------------------------------------------|");
             System.out.print("    - EDITORIAL'S NAME: ");
@@ -91,7 +92,32 @@ public class EditorialService extends Printable {
             System.out.println("|-------------------------------------------------|");
             System.out.println("|EDITORIAL SUCCESSFULLY UPDATED FROM THE DATABASE |");
             System.out.println("|-------------------------------------------------|");
-            
+
+        }
+    }
+
+    //ACTUALIZAR EL ALTA DE LA EDITORIAL
+    public void updateRegister() throws Exception {
+        //INSTANCIAMOS EL DAO DE LIBRO
+        BookDAO daoB = new BookDAO();
+        //DEBEMOS TRAER A TODAS LAS EDITORIALES DE LA TABLA
+        List<Editorial> editorials = dao.selectEditorial();
+        
+        //SE COMPRUEBA QUE LA LISTA NO SE ENCUENTRE VACIA
+        if (editorials != null) {
+            //SE RECORRE LA LISTA
+            for(Editorial aux : editorials){
+                //SI EL CONTADOR DE LIBROS POR EDITORIAL DA 0 EL ALTA CAMBIA A FALSE 
+                //Y SE DEBERA DE ACTUALIZAR EN LA BASE DE DATOS
+                if (daoB.countBooksByEditorial(aux) == 0) {
+                    aux.setRegister(false);
+                    dao.update(aux);
+                    System.out.println("UPDATE REGISTER FOR " + aux.getName());
+                }else{
+                    aux.setRegister(true);
+                    dao.update(aux);
+                }
+            }
         }
     }
 

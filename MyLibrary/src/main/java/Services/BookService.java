@@ -152,19 +152,19 @@ public class BookService extends Printable {
                         System.out.println("|-------------------------------------------------|");
                         System.out.print("   - BORROWED COPIES: ");
                         book.setBorrowedCopies(scan.nextInt());
+                        book.setRemaininCopies(book.getCopy() - book.getBorrowedCopies());
                         break;
                     case 7:
                         System.out.println("|-------------------------------------------------|");
                         System.out.print("   - REMAINING COPIES: ");
                         book.setRemaininCopies(scan.nextInt());
+                        book.setBorrowedCopies(book.getCopy()-book.getBorrowedCopies());
                         break;
                     default:
                         System.out.println("OPTION DOES NOT EXIST, TRY AGAIN");
                 }
                 dao.update(book);
-                System.out.println("|-------------------------------------------------|");
-                System.out.println("|   BOOK SUCCESSFULLY UPDATED FROM THE DATABASE   |");
-                System.out.println("|-------------------------------------------------|");
+
             } else {
                 System.out.println("|-------------------------------------------------|");
                 System.out.println("| THE BOOK DOES NOT EXIST, PLEASE TRY AGAIN       |");
@@ -244,6 +244,37 @@ public class BookService extends Printable {
             System.out.println("| THE AUTHOR DOES NOT EXIST, PLEASE TRY AGAIN     |");
             System.out.println("|-------------------------------------------------|");
         }
+    }
+    
+    //ACTUALIZAR EL ALTA DE LIBROS
+    public void updateRegister() throws Exception{
+        //DEBEMOS TRAER A TODOS LOS LIBROS DE LA TABLA
+        List<Book> books = dao.selectBooks();
+        
+        //SE COMPRUEBA QUE LA LISTA NO SE ENCUENTRE VACIA
+        if (books != null) {
+            //SE RECORRE LA LISTA
+            for(Book aux : books){
+                //PARA CAMBIAR EL ALTA FALSE PRIMERO SE COMPRUEBA QUE LOS LIBROS PRESTADOS SEAN IGUAL AL DE LAS COPIAS
+                if(aux.getCopy() <= aux.getBorrowedCopies()){
+                    aux.setRegister(false);
+                    dao.update(aux);
+                    System.out.println("UPDATE REGISTER FOR " + aux.getTitle());
+                }
+                //SI TIENE PARAMETROS EN BLANCO TMB DEBERIA DE CAMBIAR EL ALTA A FALSE
+                if (aux.getAuthor() == null || aux.getEditorial() == null || aux.getTitle().isBlank()
+                        || aux.getYear() == 0) {
+                    aux.setRegister(false);
+                    dao.update(aux);
+                    System.out.println("MISSING PARAMETERS IN " + aux.getTitle());
+                }else if(aux.getAuthor() != null && aux.getEditorial() != null && !aux.getTitle().isBlank()
+                        && aux.getYear() != 0 && aux.getCopy() > aux.getBorrowedCopies()){
+                    aux.setRegister(true);
+                    dao.update(aux);
+                }
+            }
+        }
+
     }
     
     //IMPRIMIR LIBROS ----------------------------------------------------------

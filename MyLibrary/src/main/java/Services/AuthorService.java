@@ -6,6 +6,7 @@ package Services;
 
 import Entities.Author;
 import Persistences.AuthorDAO;
+import Persistences.BookDAO;
 import java.util.List;
 import java.util.Scanner;
 
@@ -103,13 +104,38 @@ public class AuthorService extends Printable {
             for (Author aux : author) {
                 showAnAuthor(aux);
             }
-            
-        }else{
+
+        } else {
             System.out.println("|-------------------------------------------------|");
             System.out.println("|  THE AUTHOR DOES NOT EXIST, PLEASE TRY AGAIN    |");
             System.out.println("|-------------------------------------------------|");
         }
-        
+
+    }
+
+    //ACTUALIZAR ALTA ----------------------------------------------------------
+    public void updateRegister() throws Exception {
+        //INSTANCIAMOS EL DAO DE LIBRO
+        BookDAO daoB = new BookDAO();
+        //DEBEMOS TRAER A TODOS LOS AUTORES DE LA TABLA
+        List<Author> authors = dao.selectAutor();
+
+        //VERIFICAMOS QUE LA LISTA NO SE ENCUENTRE VACIA
+        if (authors != null) {
+            //RECORREMOS LA LISTA
+            for (Author aux : authors) {
+                //SI EL CONTADOR DE LIBROS POR AUTOR DA 0 EL ALTA CAMBIA A FALSE 
+                //Y SE DEBERA DE ACTUALIZAR EN LA BASE DE DATOS
+                if (daoB.countBooksByAuthor(aux) == 0) {
+                    aux.setRegister(false);
+                    dao.update(aux);
+                    System.out.println("UPDATE REGISTER FOR " + aux.getName());
+                }else{
+                    aux.setRegister(true);
+                    dao.update(aux);
+                }
+            }
+        }
 
     }
 
