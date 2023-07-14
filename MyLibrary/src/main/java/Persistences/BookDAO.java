@@ -23,13 +23,12 @@ public class BookDAO extends DAO<Book> {
     public void delete(long idB) throws Exception {
         super.delete(selectBookByID(idB));
     }
-    
+
     //ACTUALIZAR LIBRO ---------------------------------------------------------
     @Override
     public void update(Book objeto) {
-        super.update(objeto); 
+        super.update(objeto);
     }
-    
 
     //ENCONTRAR UN LIBRO POR ID ------------------------------------------------
     public Book selectBookByID(long ID) throws Exception {

@@ -104,6 +104,12 @@ public abstract class Printable {
         System.out.println("|-------------------------------------------------|");
     }
     
+    protected void printOpc11(){
+        System.out.println("|-------------------------------------------------|");
+        System.out.println("|              SELECT A BOOK BY ISBN              |");
+        System.out.println("|-------------------------------------------------|");
+    }
+    
     // CASILLAS ----------------------------------------------------------------
     public void imprimirCasilla(String nombre, String variable) {
         int tamanio;
