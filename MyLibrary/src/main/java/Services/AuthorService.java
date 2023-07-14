@@ -84,11 +84,32 @@ public class AuthorService extends Printable {
             System.out.println("|-------------------------------------------------|");
             System.out.println("|  AUTHOR SUCCESSFULLY UPDATED FROM THE DATABASE  |");
             System.out.println("|-------------------------------------------------|");
+        } else {
+            System.out.println("|-------------------------------------------------|");
+            System.out.println("|  THE AUTHOR DOES NOT EXIST, PLEASE TRY AGAIN    |");
+            System.out.println("|-------------------------------------------------|");
+        }
+
+    }
+
+    //OPCION 10 DEL MENU
+    public void showAuthorByName() throws Exception {
+        printOpc10();
+        System.out.print("   - AUTHOR'S NAME: ");
+        String nameA = scaner.nextLine();
+
+        List<Author> author = dao.selectAuthorByName(nameA);
+        if (author != null) {
+            for (Author aux : author) {
+                showAnAuthor(aux);
+            }
+            
         }else{
             System.out.println("|-------------------------------------------------|");
             System.out.println("|  THE AUTHOR DOES NOT EXIST, PLEASE TRY AGAIN    |");
             System.out.println("|-------------------------------------------------|");
         }
+        
 
     }
 
@@ -105,6 +126,18 @@ public class AuthorService extends Printable {
             imprimirCasilla(aux.getName(), vName);
             System.out.println("|");
         }
+        System.out.println("|-------------------------------------------------|");
+    }
+
+    private void showAnAuthor(Author autor) {
+        String vID = "___ ID ___", vName = "________________ NAME ________________";
+        System.out.println("|-------------------------------------------------|");
+        System.out.println("|                     AUTHOR                      |");
+        System.out.println("|-------------------------------------------------|");
+        System.out.println("|" + vID + "|" + vName + "|");
+        imprimirCasilla(String.valueOf(autor.getId()), vID);
+        imprimirCasilla(autor.getName(), vName);
+        System.out.println("|");
         System.out.println("|-------------------------------------------------|");
     }
 

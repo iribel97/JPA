@@ -69,7 +69,7 @@ public class Service extends Printable {
                 servB.updateBook();
                 break;
             case 10:
-
+                servA.showAuthorByName();
                 break;
             case 11:
 
