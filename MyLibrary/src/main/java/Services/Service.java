@@ -66,7 +66,7 @@ public class Service extends Printable {
                 servE.updateEditorial();
                 break;
             case 9:
-
+                servB.updateBook();
                 break;
             case 10:
 

@@ -60,7 +60,6 @@ public class BookService extends Printable {
         System.out.print("   - SELECT AN EDITORIAL ID: ");
         book.setEditorial(servE.selectOneEditorial(scan.nextInt()));
 
-
         //SI LA FUNCION BOOLEANA SE MANTUVO FALSE, SIGNIFICA QUE EL ISBN NO EXISTE
         if (!findBook(book)) {
             System.out.println("|-------------------------------------------------|");
@@ -74,30 +73,109 @@ public class BookService extends Printable {
             System.out.println("|-------------------------------------------------|");
         }
     }
-    
+
     //OPCION 6 DEL MENU
-    public void deleteBook() throws Exception{
-        
+    public void deleteBook() throws Exception {
+
         printOpc6();
         showBooks();
-        
+
         //PEDIR AL USUARIO
         System.out.print("   - SELECT BOOK ID: ");
-        
+
         //INSTANCIAMOS OBJETO DE TIPO BOOK Y LE MANDAMOS EL ID QUE SELECCIONE EL USUARIO
         Book book = dao.selectBookByID(scan.nextLong());
-        if (findBook(book)) {
+        if (book != null) {
             dao.delete(book.getIsbn());
             System.out.println("|-------------------------------------------------|");
             System.out.println("|  BOOK SUCCESSFULLY DELETED FROM THE DATABASE    |");
             System.out.println("|-------------------------------------------------|");
-        }else{
+        } else {
             System.out.println("|-------------------------------------------------|");
             System.out.println("| THE BOOK DOES NOT EXIST, PLEASE TRY AGAIN       |");
             System.out.println("|-------------------------------------------------|");
         }
-       
-        
+
+    }
+
+    //OPCION 9 DEL MENU
+    public void updateBook() {
+        int opc;
+        printOpc9();
+        try {
+            System.out.println("|-------------------------------------------------|");
+            System.out.print(" SELECT AN OPTION: ");
+            opc = scan.nextInt();
+
+            //MOSTRAR LIBROS
+            showBooks();
+
+            //PEDIR AL USUARIO
+            System.out.println("|-------------------------------------------------|");
+            System.out.print("   - SELECT BOOK ISBN: ");
+
+            //INSTANCIAMOS OBJETO DE TIPO BOOK Y LE MANDAMOS EL ID QUE SELECCIONE EL USUARIO
+            Book book = dao.selectBookByID(scan.nextLong());
+
+            if (book != null) {
+                switch (opc) {
+                    case 1:
+                        System.out.println("|-------------------------------------------------|");
+                        System.out.print("   - TITLE: ");
+                        scan.nextLine();
+                        book.setTitle(scan.nextLine());
+
+                        break;
+                    case 2:
+                        System.out.println("|-------------------------------------------------|");
+                        System.out.print("   - YEAR: ");
+                        book.setYear(scan.nextInt());
+                        break;
+                    case 3:
+                        System.out.println("|-------------------------------------------------|");
+                        servA.showAuthors();
+                        System.out.print("   - SELECT AN AUTHOR ID : ");
+                        book.setAuthor(servA.selectOneAuthor(scan.nextInt()));
+                        break;
+                    case 4:
+                        System.out.println("|-------------------------------------------------|");
+                        servE.showEditorials();
+                        System.out.print("   - SELECT AN EDITORIAL ID: ");
+                        book.setEditorial(servE.selectOneEditorial(scan.nextInt()));
+                        break;
+                    case 5:
+                        System.out.println("|-------------------------------------------------|");
+                        System.out.print("   - COPIES: ");
+                        book.setCopy(scan.nextInt());
+                        break;
+                    case 6:
+                        System.out.println("|-------------------------------------------------|");
+                        System.out.print("   - BORROWED COPIES: ");
+                        book.setBorrowedCopies(scan.nextInt());
+                        break;
+                    case 7:
+                        System.out.println("|-------------------------------------------------|");
+                        System.out.print("   - REMAINING COPIES: ");
+                        book.setRemaininCopies(scan.nextInt());
+                        break;
+                    default:
+                        System.out.println("OPTION DOES NOT EXIST, TRY AGAIN");
+                }
+                dao.update(book);
+                System.out.println("|-------------------------------------------------|");
+                System.out.println("|   BOOK SUCCESSFULLY UPDATED FROM THE DATABASE   |");
+                System.out.println("|-------------------------------------------------|");
+            } else {
+                System.out.println("|-------------------------------------------------|");
+                System.out.println("| THE BOOK DOES NOT EXIST, PLEASE TRY AGAIN       |");
+                System.out.println("|-------------------------------------------------|");
+            }
+
+        } catch (Exception e) {
+            System.out.println("WRONGLY TYPED OPTION");
+            scan.nextLine();
+        }
+
     }
 
     //IMPRIMIR LIBROS ----------------------------------------------------------

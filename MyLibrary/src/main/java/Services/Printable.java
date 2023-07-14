@@ -21,7 +21,7 @@ public abstract class Printable {
         System.out.println("|  5.- DELETE EDITORIAL                           |");  //OK
         System.out.println("|  6.- DELETE BOOK                                |");  //OK
         System.out.println("|  7.- UPDATE AUTHOR                              |");  //OK
-        System.out.println("|  8.- UPDATE EDITORIAL                           |");
+        System.out.println("|  8.- UPDATE EDITORIAL                           |");  //OK
         System.out.println("|  9.- UPDATE BOOK                                |");
         System.out.println("| 10.- SEARCH AN AUTHOR BY NAME                   |");
         System.out.println("| 11.- SEARCH A BOOK BY ISBN                      |");
@@ -81,6 +81,20 @@ public abstract class Printable {
     protected void printOpc8(){
         System.out.println("|-------------------------------------------------|");
         System.out.println("|                 UPDATE EDITORIAL                |");
+        System.out.println("|-------------------------------------------------|");
+    }
+    
+    protected void printOpc9(){
+        System.out.println("|-------------------------------------------------|");
+        System.out.println("|                   UPDATE BOOK                   |");
+        System.out.println("|-------------------------------------------------|");
+        System.out.println("|    1. TITLE                                     |");
+        System.out.println("|    2. YEAR                                      |");
+        System.out.println("|    3. AUTHOR                                    |");
+        System.out.println("|    4. EDITORIAL                                 |");
+        System.out.println("|    5. COPIES                                    |");
+        System.out.println("|    6. BORROWED COPIES                           |");
+        System.out.println("|    7. REMAINING COPIES                          |");
         System.out.println("|-------------------------------------------------|");
     }
     
