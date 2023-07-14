@@ -26,7 +26,7 @@ public abstract class Printable {
         System.out.println("| 10.- SEARCH AN AUTHOR BY NAME                   |");  //OK
         System.out.println("| 11.- SEARCH A BOOK BY ISBN                      |");  //OK
         System.out.println("| 12.- SEARCH A BOOK BY TITLE                     |");  //OK
-        System.out.println("| 13.- SEARCH BOOKS BY AUTHOR NAME                |");
+        System.out.println("| 13.- SEARCH BOOKS BY AUTHOR                     |");  //OK
         System.out.println("| 14.- SEARCH BOOKS BY EDITORIAL                  |");
         System.out.println("| 15.- SHOW BOOKS                                 |");
         System.out.println("| 16.- SHOW EDITORIALS                            |");  //OK
@@ -113,6 +113,18 @@ public abstract class Printable {
     protected void printOpc12(){
         System.out.println("|-------------------------------------------------|");
         System.out.println("|              SELECT A BOOK BY TITLE             |");
+        System.out.println("|-------------------------------------------------|");
+    }
+    
+    protected void printOpc13(){
+        System.out.println("|-------------------------------------------------|");
+        System.out.println("|          SELECT A BOOK BY AUTHOR'S NAME         |");
+        System.out.println("|-------------------------------------------------|");
+    }
+    
+    protected void printOpc14(){
+        System.out.println("|-------------------------------------------------|");
+        System.out.println("|            SELECT A BOOK BY EDITORIAL           |");
         System.out.println("|-------------------------------------------------|");
     }
     

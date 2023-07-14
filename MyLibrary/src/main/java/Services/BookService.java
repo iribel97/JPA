@@ -212,6 +212,40 @@ public class BookService extends Printable {
         }
     }
 
+    //OPCION 13 DEL MENU
+    public void showBookByAuthor() throws Exception {
+        printOpc13();
+        System.out.print("   - AUTHOR'S NAME: ");
+        String authorB = scan.nextLine();
+
+        List<Book> books = dao.selectBookByAuthor(authorB);
+
+        if (books != null) {
+            showManyBooks(books);
+        } else {
+            System.out.println("|-------------------------------------------------|");
+            System.out.println("| THE AUTHOR DOES NOT EXIST, PLEASE TRY AGAIN     |");
+            System.out.println("|-------------------------------------------------|");
+        }
+    }
+    
+    //OPCION 14 DEL MENU
+    public void showBookByEditorial() throws Exception {
+        printOpc13();
+        System.out.print("   - EDITORIAL'S NAME: ");
+        String editorialB = scan.nextLine();
+
+        List<Book> books = dao.selectBookByEditorial(editorialB);
+
+        if (books != null) {
+            showManyBooks(books);
+        } else {
+            System.out.println("|-------------------------------------------------|");
+            System.out.println("| THE AUTHOR DOES NOT EXIST, PLEASE TRY AGAIN     |");
+            System.out.println("|-------------------------------------------------|");
+        }
+    }
+    
     //IMPRIMIR LIBROS ----------------------------------------------------------
     public void showBooks() throws Exception {
         //INSTANCIAMOS UNA LISTA DE OBJETOS DE TIPO LIBRO

@@ -44,10 +44,10 @@ public class EditorialDAO extends DAO<Editorial>{
             //BUSCAR EL AUTOR
             Editorial editorial = em.find(Editorial.class, idEditorial);
 
-            //UNA VEZ QUE SE OPTIENE EL AUTOR SE DESCONECTA LA BASE DE DATOS
+            //UNA VEZ QUE SE OPTIENE LA EDITORIAL SE DESCONECTA LA BASE DE DATOS
             desconect();
 
-            //RETORNAMOS EL AUTOR
+            //RETORNAMOS LA EDITORIAL
             return editorial;
         } catch (Exception e) {
             throw new Exception("ERROR EN DAO AUTOR, METODO selectAutorByID: ", e);
@@ -60,7 +60,7 @@ public class EditorialDAO extends DAO<Editorial>{
             //se conecta a la base de datos
             conect();
             
-            //pedimos por medio de un query todos los autores
+            //pedimos por medio de un query todos las editoriales
             List<Editorial> editoriales = em.createQuery("SELECT e FROM Editorial e").getResultList();
             
             //desconectamos de la base de datos
@@ -70,6 +70,35 @@ public class EditorialDAO extends DAO<Editorial>{
             return editoriales;
         } catch (Exception e) {
             throw new Exception("ERROR EN DAO EDITORIAL, METODO selectEditorial: ", e);
+        }
+    }
+    
+    //DEVOLVER UNA EDITORIAL POR MEDIO DEL NOMBRE ------------------------------
+    public Editorial selectEditorialByName(String nameE) throws Exception {
+        
+        try {
+            
+            if (nameE == null || nameE.isBlank()) {
+                throw new Exception("PLEASE ENTER A NAME");
+            }
+            
+            //se conecta a la base de datos
+            conect();
+            
+            //pedimos por medio de un query la editorial
+            Editorial editorial = em.createQuery("SELECT e FROM Editorial e WHERE e.name = :nombreE", Editorial.class)
+                    .setParameter("nombreE", nameE)
+                    .getSingleResult();
+            
+            //UNA VEZ QUE SE OPTIENE LA EDITORIAL SE DESCONECTA LA BASE DE DATOS
+            desconect();
+
+            //RETORNAMOS LA EDITORIAL
+            return editorial;
+            
+            
+        } catch (Exception e) {
+            throw new Exception("ERROR EN DAO EDITORIAL, METODO selectEditorialByName: ", e);
         }
     }
 }

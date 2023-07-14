@@ -82,12 +82,33 @@ public class AuthorDAO extends DAO<Author> {
         try {
             //se conecta a la base de datos
             conect();
-            
+
             //por medio de un query pedimos que nos regrese un autor
             List<Author> author = em.createQuery("SELECT a FROM Author a WHERE a.name LIKE :nameA")
-            .setParameter("nameA", "%" + name + "%")
-            .getResultList();
-            
+                    .setParameter("nameA", "%" + name + "%")
+                    .getResultList();
+
+            //desconectamos de la base de datos
+            desconect();
+
+            //retornamos el autor
+            return author;
+        } catch (Exception e) {
+            throw new Exception("ERROR IN DAO AUTHOR, METHOD selectAuthorByName");
+        }
+    }
+
+    //SELECCIONAR UN AUTOR POR EL NOMBRE ---------------------------------------
+    public Author selectAnAuthorByName(String name) throws Exception {
+        try {
+            //se conecta a la base de datos
+            conect();
+
+            //por medio de un query pedimos que nos regrese un autor
+            Author author = em.createQuery("SELECT a FROM Author a WHERE a.name = :nameA", Author.class)
+                    .setParameter("nameA", name)
+                    .getSingleResult();
+
             //desconectamos de la base de datos
             desconect();
 

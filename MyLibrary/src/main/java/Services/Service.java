@@ -78,10 +78,10 @@ public class Service extends Printable {
                 servB.showBookByTitle();
                 break;
             case 13:
-
+                servB.showBookByAuthor();
                 break;
             case 14:
-
+                servB.showBookByEditorial();
                 break;
             case 15:
                 servB.showBooks();
