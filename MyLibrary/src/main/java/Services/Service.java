@@ -75,7 +75,7 @@ public class Service extends Printable {
                 servB.showBookByISBN();
                 break;
             case 12:
-
+                servB.showBookByTitle();
                 break;
             case 13:
 

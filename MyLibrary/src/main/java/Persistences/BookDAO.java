@@ -67,5 +67,28 @@ public class BookDAO extends DAO<Book> {
             throw new Exception("ERROR EN DAO BOOK, METODO selectEditorial: ", e);
         }
     }
+    
+    //DEVOLVER LIBROS POR TITULO -----------------------------------------------
+    public List<Book> selectBookByTitle(String name) throws Exception {
+        try {
+            
+            //se conecta a la base de datos
+            conect();
+
+            //pedimos por medio de un query todos los autores
+            List<Book> books = em.createQuery("SELECT b FROM Book b WHERE b.title LIKE :nombreA", Book.class)
+                    .setParameter("nombreA", "%" + name + "%")
+                    .getResultList();
+            
+            //desconectamos de la base de datos
+            desconect();
+
+            //retornamos la list
+            return books;
+            
+        } catch (Exception e) {
+            throw new Exception("ERROR EN DAO BOOK, METODO selectBookByTitle: ", e);
+        }
+    }
 
 }

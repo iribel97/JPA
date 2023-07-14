@@ -195,6 +195,23 @@ public class BookService extends Printable {
         }
     }
 
+    //OPCION 12 DEL MENU
+    public void showBookByTitle() throws Exception {
+        printOpc12();
+        System.out.print("   - BOOK'S TITLE: ");
+        String titleB = scan.nextLine();
+
+        List<Book> books = dao.selectBookByTitle(titleB);
+
+        if (books != null) {
+            showManyBooks(books);
+        } else {
+            System.out.println("|-------------------------------------------------|");
+            System.out.println("| THE BOOK DOES NOT EXIST, PLEASE TRY AGAIN       |");
+            System.out.println("|-------------------------------------------------|");
+        }
+    }
+
     //IMPRIMIR LIBROS ----------------------------------------------------------
     public void showBooks() throws Exception {
         //INSTANCIAMOS UNA LISTA DE OBJETOS DE TIPO LIBRO
@@ -245,6 +262,32 @@ public class BookService extends Printable {
         imprimirCasilla(String.valueOf(aux.getBorrowedCopies()), vBC);
         imprimirCasilla(String.valueOf(aux.getRemaininCopies()), vRC);
         System.out.println("|");
+        System.out.println("|-----------------------------------------------------------------------------------------------------------------------------------|");
+    }
+
+    //IMPRIMIR LIBROS POR FILTRADO ---------------------------------------------
+    private void showManyBooks(List<Book> books) {
+        //VARIABLES PARA EL ENCABEZADO
+        String vISBN = "____ ISBN ____", vTitle = "___________ TITLE ___________",
+                vYear = "__ YEAR __", vAuthor = "_____ AUTHOR _____",
+                vEditorial = "___ EDITORIAL ___", vCopies = "__ COPIES __",
+                vBC = "___ B.C. ___", vRC = "___ R.C. ___";
+
+        System.out.println("|-----------------------------------------------------------------------------------------------------------------------------------|");
+        System.out.println("|                                                               BOOKS                                                               |");
+        System.out.println("|-----------------------------------------------------------------------------------------------------------------------------------|");
+        System.out.println("|" + vISBN + "|" + vTitle + "|" + vYear + "|" + vAuthor + "|" + vEditorial + "|" + vCopies + "|" + vBC + "|" + vRC + "|");
+        for (Book aux : books) {
+            imprimirCasilla(String.valueOf(aux.getIsbn()), vISBN);
+            imprimirCasilla(aux.getTitle(), vTitle);
+            imprimirCasilla(String.valueOf(aux.getYear()), vYear);
+            imprimirCasilla(aux.getAuthor().getName(), vAuthor);
+            imprimirCasilla(aux.getEditorial().getName(), vEditorial);
+            imprimirCasilla(String.valueOf(aux.getCopy()), vCopies);
+            imprimirCasilla(String.valueOf(aux.getBorrowedCopies()), vBC);
+            imprimirCasilla(String.valueOf(aux.getRemaininCopies()), vRC);
+            System.out.println("|");
+        }
         System.out.println("|-----------------------------------------------------------------------------------------------------------------------------------|");
     }
 

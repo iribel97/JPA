@@ -24,8 +24,8 @@ public abstract class Printable {
         System.out.println("|  8.- UPDATE EDITORIAL                           |");  //OK
         System.out.println("|  9.- UPDATE BOOK                                |");  //OK
         System.out.println("| 10.- SEARCH AN AUTHOR BY NAME                   |");  //OK
-        System.out.println("| 11.- SEARCH A BOOK BY ISBN                      |");
-        System.out.println("| 12.- SEARCH A BOOK BY TITLE                     |");
+        System.out.println("| 11.- SEARCH A BOOK BY ISBN                      |");  //OK
+        System.out.println("| 12.- SEARCH A BOOK BY TITLE                     |");  //OK
         System.out.println("| 13.- SEARCH BOOKS BY AUTHOR NAME                |");
         System.out.println("| 14.- SEARCH BOOKS BY EDITORIAL                  |");
         System.out.println("| 15.- SHOW BOOKS                                 |");
@@ -107,6 +107,12 @@ public abstract class Printable {
     protected void printOpc11(){
         System.out.println("|-------------------------------------------------|");
         System.out.println("|              SELECT A BOOK BY ISBN              |");
+        System.out.println("|-------------------------------------------------|");
+    }
+    
+    protected void printOpc12(){
+        System.out.println("|-------------------------------------------------|");
+        System.out.println("|              SELECT A BOOK BY TITLE             |");
         System.out.println("|-------------------------------------------------|");
     }
     
