@@ -29,16 +29,16 @@ public class Service extends Printable {
                 menu();
                 opc = scaner.nextInt();
 
-                if (opc > 15) {
+                if (opc > 19) {
                     System.out.println("OPTION DOES NOT EXIST, TRY AGAIN");
                 }
             } catch (Exception e) {
-                opc = 16;
+                opc = 19;
                 System.out.println("WRONGLY TYPED OPTION");
                 scaner.nextLine();
 
             } 
-        } while (opc > 15);
+        } while (opc > 18);
 
         switch (opc) {
             case 1:
@@ -57,7 +57,7 @@ public class Service extends Printable {
                 servE.deleteEditorial();
                 break;
             case 6:
-
+                servB.deleteBook();
                 break;
             case 7:
 
@@ -80,10 +80,22 @@ public class Service extends Printable {
             case 13:
 
                 break;
+            case 14:
+
+                break;
+            case 15:
+                servB.showBooks();
+                break;
+            case 16:
+                servE.showEditorials();
+                break;
+            case 17:
+                servA.showAuthors();
+                break;
 
         }
 
-        return opc != 15;
+        return opc != 18;
     }
 
 }

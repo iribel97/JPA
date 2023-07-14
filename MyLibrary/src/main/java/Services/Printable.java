@@ -18,8 +18,8 @@ public abstract class Printable {
         System.out.println("|  2.- INSERT EDITORIAL                           |");  //OK
         System.out.println("|  3.- INSERT BOOK                                |");  //OK
         System.out.println("|  4.- DELETE AUTHOR                              |");  //OK
-        System.out.println("|  5.- DELETE EDITORIAL                           |");
-        System.out.println("|  6.- DELETE BOOK                                |");
+        System.out.println("|  5.- DELETE EDITORIAL                           |");  //OK
+        System.out.println("|  6.- DELETE BOOK                                |");  //OK
         System.out.println("|  7.- UPDATE AUTHOR                              |");
         System.out.println("|  8.- UPDATE EDITORIAL                           |");
         System.out.println("|  9.- UPDATE BOOK                                |");
@@ -28,7 +28,10 @@ public abstract class Printable {
         System.out.println("| 12.- SEARCH A BOOK BY TITLE                     |");
         System.out.println("| 13.- SEARCH BOOKS BY AUTHOR NAME                |");
         System.out.println("| 14.- SEARCH BOOKS BY EDITORIAL                  |");
-        System.out.println("| 15.- EXIT                                       |");
+        System.out.println("| 15.- SHOW BOOKS                                 |");
+        System.out.println("| 16.- SHOW EDITORIALS                            |");  //OK
+        System.out.println("| 17.- SHOW AUTHORS                               |");  //OK
+        System.out.println("| 18.- EXIT                                       |");
         System.out.println("|-------------------------------------------------|");
         System.out.print("   SELECT AN OPTION : ");
     }
@@ -60,6 +63,12 @@ public abstract class Printable {
     protected void printOpc5(){
         System.out.println("|-------------------------------------------------|");
         System.out.println("|                 DELETE EDITORIAL                |");
+        System.out.println("|-------------------------------------------------|");
+    }
+    
+    protected void printOpc6(){
+        System.out.println("|-------------------------------------------------|");
+        System.out.println("|                   DELETE BOOK                   |");
         System.out.println("|-------------------------------------------------|");
     }
     

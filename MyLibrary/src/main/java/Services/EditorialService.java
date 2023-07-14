@@ -15,8 +15,8 @@ import java.util.Scanner;
  */
 public class EditorialService extends Printable {
 
-    Scanner scaner = new Scanner(System.in);
-    EditorialDAO dao;
+    private final Scanner scaner = new Scanner(System.in);
+    private final EditorialDAO dao;
 
     public EditorialService() {
         this.dao = new EditorialDAO();
@@ -24,7 +24,6 @@ public class EditorialService extends Printable {
 
     //OPCION 2 DEL MENU
     public void insertEditorial() throws Exception {
-        boolean flag = false;
 
         List<Editorial> editoriales = dao.selectEditorial();
 
@@ -34,16 +33,6 @@ public class EditorialService extends Printable {
 
         System.out.print(" EDITORIAL'S NAME: ");
         editorial.setName(scaner.nextLine());
-
-        if (!editoriales.isEmpty()) {
-            for (Editorial aux : editoriales) {
-                if (aux.getName().equalsIgnoreCase(editorial.getName())) {
-                    flag = true;
-
-                }
-            }
-
-        }
 
         if (!findEditorial(editorial)) {
             System.out.println("|-------------------------------------------------|");
@@ -59,22 +48,21 @@ public class EditorialService extends Printable {
 
     //OPCION 5 DEL MENU
     public void deleteEditorial() throws Exception {
-        
-        
+
         printOpc5();
         showEditorials();
         //PEDIR AL USUARIO
         System.out.print("   - SELECT EDITORIAL ID: ");
-        
+
         //INSTANCIAMOS OBJETO DE TIPO EDITORIAL
         Editorial editorial = dao.selectEditorialByID(scaner.nextInt());
-        
+
         if (findEditorial(editorial)) {
             dao.delete(editorial.getId());
             System.out.println("|-------------------------------------------------|");
             System.out.println("|EDITORIAL SUCCESSFULLY DELETED FROM THE DATABASE |");
             System.out.println("|-------------------------------------------------|");
-        }else{
+        } else {
             System.out.println("|-------------------------------------------------|");
             System.out.println("| THE EDITORIAL DOES NOT EXIST, PLEASE TRY AGAIN  |");
             System.out.println("|-------------------------------------------------|");
@@ -114,7 +102,7 @@ public class EditorialService extends Printable {
                 }
             }
         }
-        
+
         return false;
     }
 

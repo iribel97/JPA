@@ -15,9 +15,9 @@ import java.util.Scanner;
  */
 public class AuthorService extends Printable {
 
-    AuthorDAO dao;
+    private final AuthorDAO dao;
 
-    Scanner scaner = new Scanner(System.in);
+    private final Scanner scaner = new Scanner(System.in);
 
     public AuthorService() {
         this.dao = new AuthorDAO();
@@ -66,8 +66,6 @@ public class AuthorService extends Printable {
             System.out.println("|  THE AUTHOR DOES NOT EXIST, PLEASE TRY AGAIN    |");
             System.out.println("|-------------------------------------------------|");
         }
-
-        //dao.delete(scaner.nextInt());
     }
 
     //IMPRIMIR AUTORES ---------------------------------------------------------
