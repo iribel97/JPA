@@ -13,7 +13,7 @@ import javax.persistence.Persistence;
  * @author irina
  */
 public class DAO<T> {
-    protected final EntityManagerFactory EMF = Persistence.createEntityManagerFactory("myLibraryJPA");
+    protected final EntityManagerFactory EMF = Persistence.createEntityManagerFactory("LibraryJPA");
     protected EntityManager em = EMF.createEntityManager();
     
     // Este método nos permite conectar con la base de datos

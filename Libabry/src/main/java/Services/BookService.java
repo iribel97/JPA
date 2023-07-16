@@ -25,7 +25,7 @@ public class BookService extends Printable {
     }
 
     public void insertBook() throws Exception {
-
+        int opcAut;
         List<Book> books = dao.selectBooks();
 
         long isbnB;
@@ -47,18 +47,31 @@ public class BookService extends Printable {
         book.setYear(scan.nextInt());
         System.out.print("   - COPIES: ");
         book.setCopies(scan.nextInt());
-        System.out.print("   - BORROWED COPIES: ");
-        book.setBorrowedCopies(scan.nextInt());
-        System.out.print("   - REMAININ COPIES: ");
-        book.setRemaininCopies(scan.nextInt());
+        do {
+            System.out.print("   - BORROWED COPIES: ");
+            book.setBorrowedCopies(scan.nextInt());
+            if (book.getBorrowedCopies() > book.getCopies()) {
+                System.out.println("|-------------------------------------------------|");
+                System.out.println("|TYPING ERROR, YOU HAVE ENTERED MORE BORROWED     |");
+                System.out.println("|COPIES THAN THERE ARE AVAILABLE, PLEASE TRY AGAIN|");
+                System.out.println("|-------------------------------------------------|");
+            }
+        } while (book.getBorrowedCopies() > book.getCopies());
+
+        book.setRemaininCopies(book.getCopies() - book.getBorrowedCopies());
 
         servA.showAuthors();
-        System.out.print("   - SELECT AN AUTHOR ID: ");
-        book.setAuthor(servA.selectOneAuthor(scan.nextInt()));
-
+        System.out.print("   - SELECT AN AUTHOR ID OR 0 TO EXIT: ");
+        opcAut = scan.nextInt();
+        if (opcAut != 0) {
+            book.setAuthor(servA.selectOneAuthor(opcAut));
+        }
         servE.showEditorials();
-        System.out.print("   - SELECT AN EDITORIAL ID: ");
-        book.setEditorial(servE.selectOneEditorial(scan.nextInt()));
+        System.out.print("   - SELECT AN EDITORIAL ID OR 0 TO EXIT: ");
+        opcAut = scan.nextInt();
+        if (opcAut != 0) {
+            book.setEditorial(servE.selectOneEditorial(opcAut));
+        }
 
         //SI LA FUNCION BOOLEANA SE MANTUVO FALSE, SIGNIFICA QUE EL ISBN NO EXISTE
         if (!findBook(book)) {
@@ -159,7 +172,7 @@ public class BookService extends Printable {
                         System.out.println("|-------------------------------------------------|");
                         System.out.print("   - REMAINING COPIES: ");
                         book.setRemaininCopies(scan.nextInt());
-                        book.setBorrowedCopies(book.getCopies()-book.getBorrowedCopies());
+                        book.setBorrowedCopies(book.getCopies() - book.getBorrowedCopies());
                         break;
                     default:
                         System.out.println("OPTION DOES NOT EXIST, TRY AGAIN");
@@ -229,7 +242,7 @@ public class BookService extends Printable {
             System.out.println("|-------------------------------------------------|");
         }
     }
-    
+
     //OPCION 14 DEL MENU
     public void showBookByEditorial() throws Exception {
 //        printOpc13();
@@ -246,7 +259,7 @@ public class BookService extends Printable {
             System.out.println("|-------------------------------------------------|");
         }
     }
-    
+
     //IMPRIMIR LIBROS ----------------------------------------------------------
     public void showBooks() throws Exception {
         //INSTANCIAMOS UNA LISTA DE OBJETOS DE TIPO LIBRO

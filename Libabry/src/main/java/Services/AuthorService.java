@@ -6,7 +6,6 @@ package Services;
 
 import Entities.Author;
 import Persistences.AuthorDAO;
-import Persistences.BookDAO;
 import java.util.List;
 import java.util.Scanner;
 
@@ -24,15 +23,15 @@ public class AuthorService extends Printable {
         this.dao = new AuthorDAO();
     }
 
-    //OPCION 1 DEL MENU
+    //OPCION 1 DEL MENU INSERTAR
     public void insertAutor() throws Exception {
 
         Author autor = new Author();
-//        printOpc1();
+        print1Opc1();
         System.out.print(" AUTHOR'S NAME: ");
         autor.setName(scaner.nextLine());
 
-        //SI LA VARIABLE BOOLEANA SE MANTUVO FALSE, SIGNIFICA QUE EL USUARIO NO EXISTE
+        //SI EL METODO BOOLEANO SE MANTUVO FALSE, SIGNIFICA QUE EL USUARIO NO EXISTE
         if (!findAuthor(autor)) {
             //POR LO QUE PROCEDE A AGREGARLO A LA BASE DE DATOS
             dao.insert(autor);

@@ -12,6 +12,10 @@ import java.util.Scanner;
  */
 public class Service extends Printable {
 
+    AuthorService servA = new AuthorService();
+    EditorialService servE = new EditorialService();
+    BookService servB = new BookService();
+
     Scanner scaner = new Scanner(System.in);
 
     public Service() {
@@ -19,17 +23,16 @@ public class Service extends Printable {
 
     public boolean menuServ() throws Exception {
         int opc = 0;
-        AuthorService servA = new AuthorService();
-        EditorialService servE = new EditorialService();
-        BookService servB = new BookService();
 
         //Repetir el menu mientras la opc digitada sea mayor de 14
         do {
             try {
+                //mostrar el menu general
                 menu();
+                //lee la opc del usuario
                 opc = scaner.nextInt();
 
-                if (opc > 19) {
+                if (opc > 13) {
                     System.out.println("OPTION DOES NOT EXIST, TRY AGAIN");
                 }
             } catch (Exception e) {
@@ -38,18 +41,37 @@ public class Service extends Printable {
                 scaner.nextLine();
 
             }
-        } while (opc > 18);
+        } while (opc > 13);
 
         switch (opc) {
             case 1:
-                servA.insertAutor();
+                case1();
                 break;
             case 2:
-                servE.insertEditorial();
                 break;
             case 3:
-                servB.insertBook();
                 break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+            case 8:
+                break;
+            case 9:
+                break;
+            case 10:
+                break;
+            case 11:
+                break;
+            case 12:
+                break;
+        }
+        /*
+        switch (opc) {
             case 4:
                 servA.deletAuthor();
                 break;
@@ -94,9 +116,46 @@ public class Service extends Printable {
                 break;
 
         }
+         */
 
+        return opc != 13;
+    }
 
-        return opc != 18;
+    //INSERTAR DATOS EN LA BASE DE DATOS
+    public void case1() {
+        int opc;
+        do {
+            try {
+                //MOSTRAR MENU DE OPCIONES PARA INSERTAR
+                minieMenuOpc1();
+                opc = scaner.nextInt();
+
+                switch (opc) {
+                    case 1:
+                        servA.insertAutor();
+                        break;
+                    case 2:
+                        servE.insertEditorial();
+                        break;
+                    case 3:
+                        servB.insertBook();
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        break;
+                    case 6:
+                        break;
+                    default:
+                        System.out.println("OPTION DOES NOT EXIST, TRY AGAIN");
+                }
+            } catch (Exception e) {
+                opc = 19;
+                System.out.println("WRONGLY TYPED OPTION");
+                scaner.nextLine();
+            }
+        } while (opc != 6);
+
     }
 
 }

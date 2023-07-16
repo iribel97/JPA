@@ -9,7 +9,7 @@ package Services;
  * @author irina
  */
 public abstract class Printable {
-    
+    //MENU GENERAL
     protected void menu(){
         System.out.println("|-------------------------------------------------|");
         System.out.println("|                     OPTIONS                     |");
@@ -17,20 +17,23 @@ public abstract class Printable {
         System.out.println("|  1.- INSERT                                     |");  
         System.out.println("|  2.- DELETE                                     |");  
         System.out.println("|  3.- UPDATE                                     |");  
-        System.out.println("| 10.- SEARCH AN AUTHOR BY NAME                   |");  //OK
-        System.out.println("| 11.- SEARCH A BOOK BY ISBN                      |");  //OK
-        System.out.println("| 12.- SEARCH A BOOK BY TITLE                     |");  //OK
-        System.out.println("| 13.- SEARCH BOOKS BY AUTHOR                     |");  //OK
-        System.out.println("| 14.- SEARCH BOOKS BY EDITORIAL                  |");  //OK
-        System.out.println("| 15.- SHOW BOOKS                                 |");  //OK
-        System.out.println("| 16.- SHOW EDITORIALS                            |");  //OK
-        System.out.println("| 17.- SHOW AUTHORS                               |");  //OK
-        System.out.println("| 18.- SHOW AUTHORS                               |");  //OK
-        System.out.println("| 18.- EXIT                                       |");
+        System.out.println("|  4.- SEARCH AN AUTHOR BY NAME                   |");  //OK
+        System.out.println("|  5.- SEARCH A BOOK BY ISBN                      |");  //OK
+        System.out.println("|  6.- SEARCH A BOOK BY TITLE                     |");  //OK
+        System.out.println("|  7.- SEARCH BOOKS BY AUTHOR                     |");  //OK
+        System.out.println("|  8.- SEARCH BOOKS BY EDITORIAL                  |");  //OK
+        System.out.println("|  9.- SHOW BOOKS                                 |");  //OK
+        System.out.println("| 10.- SHOW EDITORIALS                            |");  //OK
+        System.out.println("| 11.- SHOW AUTHORS                               |");  
+        System.out.println("| 12.- SHOW CLIENTS                               |");  
+        System.out.println("| 13.- EXIT                                       |");
         System.out.println("|-------------------------------------------------|");
         System.out.print("   SELECT AN OPTION : ");
     }
     
+   /* -------------------------------------------------------------------------------------------------------------
+    OPCION 1 DEL MENU GENERAL
+    */
     protected void minieMenuOpc1(){
         System.out.println("|-------------------------------------------------|");
         System.out.println("|                 OPTIONS INSERT                  |");
@@ -44,7 +47,32 @@ public abstract class Printable {
         System.out.println("|-------------------------------------------------|");
         System.out.print("   SELECT AN OPTION : ");
     }
+    //OPC 1 DEL INSERTAR
+    protected void print1Opc1(){
+        System.out.println("|-------------------------------------------------|");
+        System.out.println("|                  INSERT AUTHOR                  |");
+        System.out.println("|-------------------------------------------------|");
+    }
     
+    //OPC 2 DEL INSERTAR
+    protected void print1Opc2(){
+        System.out.println("|-------------------------------------------------|");
+        System.out.println("|                INSERT EDITORIAL                 |");
+        System.out.println("|-------------------------------------------------|");
+    }
+    
+    //OPC 3 DEL INSERTAR
+    protected void print1Opc3(){
+        System.out.println("|-------------------------------------------------|");
+        System.out.println("|                   INSERT BOOK                   |");
+        System.out.println("|-------------------------------------------------|");
+    }
+    
+    
+    
+    /* -------------------------------------------------------------------------------------------------------------
+    OPCION 2 DEL MENU GENERAL
+    */
     protected void minieMenuOpc2(){
         System.out.println("|-------------------------------------------------|");
         System.out.println("|                 OPTIONS DELETE                  |");
@@ -59,6 +87,7 @@ public abstract class Printable {
         System.out.print("   SELECT AN OPTION : ");
     }
     
+    //OPCION 3 DEL MENU GENERAL
     protected void minieMenuOpc3(){
         System.out.println("|-------------------------------------------------|");
         System.out.println("|                 OPTIONS UPDATE                  |");
@@ -73,6 +102,7 @@ public abstract class Printable {
         System.out.print("   SELECT AN OPTION : ");
     }
     
+    //OPCION 4 DEL MENU GENERAL
     protected void minieMenuOpc4(){
         System.out.println("|-------------------------------------------------|");
         System.out.println("|                 OPTIONS SEARCH                  |");
@@ -88,23 +118,8 @@ public abstract class Printable {
         System.out.print("   SELECT AN OPTION : ");
     }
     
-    protected void printOpc1(){
-        System.out.println("|-------------------------------------------------|");
-        System.out.println("|                  INSERT AUTHOR                  |");
-        System.out.println("|-------------------------------------------------|");
-    }
     
-    protected void printOpc2(){
-        System.out.println("|-------------------------------------------------|");
-        System.out.println("|                INSERT EDITORIAL                 |");
-        System.out.println("|-------------------------------------------------|");
-    }
     
-    protected void printOpc3(){
-        System.out.println("|-------------------------------------------------|");
-        System.out.println("|                   INSERT BOOK                   |");
-        System.out.println("|-------------------------------------------------|");
-    }
     
     protected void printOpc4(){
         System.out.println("|-------------------------------------------------|");

@@ -23,14 +23,14 @@ public class EditorialService extends Printable {
         this.dao = new EditorialDAO();
     }
 
-    //OPCION 2 DEL MENU
+    //OPCION 2 DEL MENU INSERTAR
     public void insertEditorial() throws Exception {
 
         List<Editorial> editoriales = dao.selectEditorial();
 
         Editorial editorial = new Editorial();
 
-//        printOpc2();
+        print1Opc2();
 
         System.out.print(" EDITORIAL'S NAME: ");
         editorial.setName(scaner.nextLine());
