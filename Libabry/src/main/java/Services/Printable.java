@@ -41,7 +41,7 @@ public abstract class Printable {
         System.out.println("|  1.- INSERT AUTHOR                              |");  //OK
         System.out.println("|  2.- INSERT EDITORIAL                           |");  //OK
         System.out.println("|  3.- INSERT BOOK                                |");  //OK
-        System.out.println("|  4.- INSERT CLIENT                              |"); 
+        System.out.println("|  4.- INSERT CLIENT                              |");  //OK
         System.out.println("|  5.- INSERT LOAN                                |"); 
         System.out.println("|  6.- EXIT                                       |");
         System.out.println("|-------------------------------------------------|");
@@ -68,7 +68,12 @@ public abstract class Printable {
         System.out.println("|-------------------------------------------------|");
     }
     
-    
+    //OPC 4 DEL INSERTAR
+    protected void print1Opc4(){
+        System.out.println("|-------------------------------------------------|");
+        System.out.println("|                  INSERT CLIENT                  |");
+        System.out.println("|-------------------------------------------------|");
+    }
     
     /* -------------------------------------------------------------------------------------------------------------
     OPCION 2 DEL MENU GENERAL
