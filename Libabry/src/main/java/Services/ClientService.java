@@ -67,4 +67,34 @@ public class ClientService extends Printable {
         return false;
     }
 
+    /*RETORNAR UN CLIENTE*/
+    public Client slectClientID(int id) throws Exception {
+        return dao.selectClientByID(id);
+    }
+
+    //IMPRIMIR CLIENTES --------------------------------------------------------
+    public void showClients() throws Exception {
+        String vID = "__ ID __", vD = "____ DOCUMENT ____", vName = "____ NAME ____",
+                vLastN = "____ LAST NAME ____", vPhone = "__ # PHONE __";
+
+        //Intanciamos una lista que va a guardar lo que de el dao
+        List<Client> clients = dao.selectClient();
+
+        if (!clients.isEmpty()) {
+            System.out.println("|--------------------------------------------------------------------------|");
+            System.out.println("|                                  CLIENTS                                 |");
+            System.out.println("|--------------------------------------------------------------------------|");
+            System.out.println("|" + vID + "|" + vD + "|" + vName + "|" + vLastN + "|" + vPhone + "|");
+            for (Client aux : clients) {
+                imprimirCasilla(String.valueOf(aux.getId()), vID);
+                imprimirCasilla(String.valueOf(aux.getDocument()), vD);
+                imprimirCasilla(aux.getName(), vName);
+                imprimirCasilla(aux.getLastName(), vLastN);
+                imprimirCasilla(aux.getPhone(), vPhone);
+                System.out.println("|");
+            }
+
+            System.out.println("|--------------------------------------------------------------------------|");
+        }
+    }
 }

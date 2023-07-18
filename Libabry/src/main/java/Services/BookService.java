@@ -16,8 +16,10 @@ import java.util.Scanner;
 public class BookService extends Printable {
 
     private final BookDAO dao;
+    // SERVICIOS ---------------------------------------------------------------
     private final AuthorService servA = new AuthorService();
     private final EditorialService servE = new EditorialService();
+    // -------------------------------------------------------------------------
     private final Scanner scan = new Scanner(System.in);
 
     public BookService() {
@@ -36,7 +38,7 @@ public class BookService extends Printable {
         Book book = new Book();
 
         //PEDIR DATOS AL USUARIO
-//        printOpc3();
+        print1Opc3();
         System.out.print("   - ISBN: ");
         book.setIsbn(scan.nextLong());
         System.out.print("   - TITLE: ");
@@ -358,5 +360,10 @@ public class BookService extends Printable {
         }
 
         return false;
+    }
+
+    /*UN LIBRO POR ISBN*/
+    public Book selectABook(Long isbnB) throws Exception {
+        return dao.selectBookByID(isbnB);
     }
 }

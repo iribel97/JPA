@@ -15,7 +15,7 @@ public class LoanDAO extends DAO<Loan>{
 
     //METODO INSERTAR PRESTAMI -------------------------------------------------
     @Override
-    protected void insert(Loan objeto) {
+    public void insert(Loan objeto) {
         super.insert(objeto); 
     }
     

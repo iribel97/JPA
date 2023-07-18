@@ -16,6 +16,7 @@ public class Service extends Printable {
     EditorialService servE = new EditorialService();
     BookService servB = new BookService();
     ClientService servC = new ClientService();
+    LoanService servL = new LoanService();
 
     Scanner scaner = new Scanner(System.in);
 
@@ -145,6 +146,7 @@ public class Service extends Printable {
                         servC.insertClient();
                         break;
                     case 5:
+                        servL.insertLoan();
                         break;
                     case 6:
                         break;
