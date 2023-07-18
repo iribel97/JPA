@@ -75,6 +75,13 @@ public abstract class Printable {
         System.out.println("|-------------------------------------------------|");
     }
     
+    //OPC 5 DEL INSERTAR
+    protected void print1Opc5(){
+        System.out.println("|-------------------------------------------------|");
+        System.out.println("|                  INSERT A LOAN                  |");
+        System.out.println("|-------------------------------------------------|");
+    }
+    
     /* -------------------------------------------------------------------------------------------------------------
     OPCION 2 DEL MENU GENERAL
     */
