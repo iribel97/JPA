@@ -31,6 +31,40 @@ public class BookDAO extends DAO<Book> {
     public void update(Book objeto) {
         super.update(objeto);
     }
+    
+    //ACTUALIZAR EL PARAMETRO DE AUTOR A NULO SI ES QUE SE LLEGA A ELIMINAR --- SE VA A USAR EN AUTHORSERVICE
+    public void updateAuthorInNullBook(int idAuthor) throws Exception{
+        try {
+            List<Book> books = selectBooks();
+            
+            for(Book aux : books){
+                if (aux.getAuthor().getId() == idAuthor) {
+                    aux.setAuthor(null);
+                    update(aux);
+                }
+            }
+            
+        } catch (Exception e) {
+            throw new Exception("ERROR EN DAO BOOK, METODO updateAuthorInNullBook: ", e);
+        }
+    }
+    
+    //ACTUALIZAR EL PARAMETRO DE EDITORIAL A NULO SI ES QUE SE LLEGA A ELIMINAR --- SE VA A USAR EN EDITORIALSERVICE
+    public void updateEditorialInNullBook(int idEditorial) throws Exception{
+        try {
+            List<Book> books = selectBooks();
+            
+            for(Book aux : books){
+                if (aux.getEditorial().getId() == idEditorial) {
+                    aux.setEditorial(null);
+                    update(aux);
+                }
+            }
+            
+        } catch (Exception e) {
+            throw new Exception("ERROR EN DAO BOOK, METODO updateEditorialInNullBook: ", e);
+        }
+    }
 
     //ENCONTRAR UN LIBRO POR ID ------------------------------------------------
     public Book selectBookByID(long ID) throws Exception {
@@ -47,7 +81,7 @@ public class BookDAO extends DAO<Book> {
             //retornamos la list
             return book;
         } catch (Exception e) {
-            throw new Exception("ERROR EN DAO BOOK, METODO selectEditorial: ", e);
+            throw new Exception("ERROR EN DAO BOOK, METODO selectBookByID: ", e);
         }
     }
 
@@ -66,7 +100,7 @@ public class BookDAO extends DAO<Book> {
             //retornamos la list
             return books;
         } catch (Exception e) {
-            throw new Exception("ERROR EN DAO BOOK, METODO selectEditorial: ", e);
+            throw new Exception("ERROR EN DAO BOOK, METODO selectBooks: ", e);
         }
     }
 
@@ -121,7 +155,7 @@ public class BookDAO extends DAO<Book> {
             }
 
         } catch (Exception e) {
-            throw new Exception("ERROR EN DAO BOOK, METODO selectBookByTitle: ", e);
+            throw new Exception("ERROR EN DAO BOOK, METODO selectBookByAuthor: ", e);
         }
     }
 
@@ -153,7 +187,7 @@ public class BookDAO extends DAO<Book> {
             }
 
         } catch (Exception e) {
-            throw new Exception("ERROR EN DAO BOOK, METODO selectBookByTitle: ", e);
+            throw new Exception("ERROR EN DAO BOOK, METODO selectBookByEditorial: ", e);
         }
     }
 

@@ -10,6 +10,7 @@ package Services;
  */
 import Entities.Client;
 import Persistences.ClientDAO;
+import Persistences.LoanDAO;
 import java.util.List;
 import java.util.Scanner;
 
@@ -22,6 +23,7 @@ public class ClientService extends Printable {
         this.dao = new ClientDAO();
     }
 
+    //OPCION 4 DEL MENU INSERTAR
     public void insertClient() throws Exception {
         Client client = new Client();
 
@@ -50,6 +52,33 @@ public class ClientService extends Printable {
         }
 
     }
+    
+    //OPCION 4 DEL MENU ELIMINAR
+    public void deleteClient() throws Exception{
+        LoanDAO daoL = new LoanDAO();
+        
+        print2Opc4();
+        
+        showClients();
+        
+        //PEDIR AL USUARIO
+        System.out.print("   - SELECT CLIENT ID: ");
+        
+        //INSTANCIAMOS OBJETO DE TIPO CLIENT Y LE MANDAMOS EL ID QUE SELECCIONE EL USUARIO
+        Client client = dao.selectClientByID(scaner.nextInt());
+        
+        if (client != null) {
+            daoL.updateClientInNull(client.getId());
+            dao.delete(client.getId());
+            System.out.println("|-------------------------------------------------|");
+            System.out.println("|  CLIENT SUCCESSFULLY DELETED FROM THE DATABASE  |");
+            System.out.println("|-------------------------------------------------|");
+        } else {
+            System.out.println("|-------------------------------------------------|");
+            System.out.println("| THE CLIENT DOES NOT EXIST, PLEASE TRY AGAIN     |");
+            System.out.println("|-------------------------------------------------|");
+        }
+    }
 
     //RETORNAR VALORES ---------------------------------------------------------
     /*VERIFICAR QUE EL CLIENTE EXISTA*/
@@ -59,7 +88,9 @@ public class ClientService extends Printable {
 
         if (!clients.isEmpty()) {
             for (Client aux : clients) {
-                if (aux.getDocument() == client.getDocument()) {
+                if (aux.getDocument() == client.getDocument() || (
+                        aux.getName().equalsIgnoreCase(client.getName()) &&
+                        aux.getLastName().equalsIgnoreCase(client.getLastName()))) {
                     return true;
                 }
             }
@@ -75,15 +106,15 @@ public class ClientService extends Printable {
     //IMPRIMIR CLIENTES --------------------------------------------------------
     public void showClients() throws Exception {
         String vID = "__ ID __", vD = "____ DOCUMENT ____", vName = "____ NAME ____",
-                vLastN = "____ LAST NAME ____", vPhone = "__ # PHONE __";
+                vLastN = "____ LAST NAME ____", vPhone = "____ # PHONE ____";
 
         //Intanciamos una lista que va a guardar lo que de el dao
         List<Client> clients = dao.selectClient();
 
         if (!clients.isEmpty()) {
-            System.out.println("|--------------------------------------------------------------------------|");
-            System.out.println("|                                  CLIENTS                                 |");
-            System.out.println("|--------------------------------------------------------------------------|");
+            System.out.println("|------------------------------------------------------------------------------|");
+            System.out.println("|                                    CLIENTS                                   |");
+            System.out.println("|------------------------------------------------------------------------------|");
             System.out.println("|" + vID + "|" + vD + "|" + vName + "|" + vLastN + "|" + vPhone + "|");
             for (Client aux : clients) {
                 imprimirCasilla(String.valueOf(aux.getId()), vID);

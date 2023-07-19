@@ -6,6 +6,7 @@ package Services;
 
 import Entities.Author;
 import Persistences.AuthorDAO;
+import Persistences.BookDAO;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,18 +15,18 @@ import java.util.Scanner;
  * @author irina
  */
 public class AuthorService extends Printable {
-
+    
     private final AuthorDAO dao;
-
+    
     private final Scanner scaner = new Scanner(System.in);
-
+    
     public AuthorService() {
         this.dao = new AuthorDAO();
     }
 
     //OPCION 1 DEL MENU INSERTAR
     public void insertAutor() throws Exception {
-
+        
         Author autor = new Author();
         print1Opc1();
         System.out.print(" AUTHOR'S NAME: ");
@@ -38,25 +39,27 @@ public class AuthorService extends Printable {
             System.out.println("|-------------------------------------------------|");
             System.out.println("|  AUTHOR SUCCESSFULLY ADDED TO THE DATABASE      |");
             System.out.println("|-------------------------------------------------|");
-
+            
         } else {
             System.out.println("|-------------------------------------------------|");
             System.out.println("|   AUTHOR ALREDY EXISTS                          |");
             System.out.println("|-------------------------------------------------|");
         }
-
+        
     }
 
-    //OPCION 4 DEL MENU
+    //OPCION 1 DEL MENU ELIMINAR
     public void deletAuthor() throws Exception {
-
-//        printOpc4();
+        BookDAO daoB = new BookDAO();
+        
+        print2Opc1();
         showAuthors();
         System.out.print("   - SELECT THE AUTHOR ID: ");
         //INSTANCIAMOS UN OBJETO DE TIPO AUTOR
         Author autor = dao.selectAutorByID(scaner.nextInt());
         //VERIFICAR QUE EL USUARIO EXISTA
         if (autor != null) {
+            daoB.updateAuthorInNullBook(autor.getId());
             dao.delete(autor.getId());
             System.out.println("|-------------------------------------------------|");
             System.out.println("|  AUTHOR SUCCESSFULLY DELETED FROM THE DATABASE  |");
@@ -89,7 +92,7 @@ public class AuthorService extends Printable {
             System.out.println("|  THE AUTHOR DOES NOT EXIST, PLEASE TRY AGAIN    |");
             System.out.println("|-------------------------------------------------|");
         }
-
+        
     }
 
     //OPCION 10 DEL MENU
@@ -97,19 +100,19 @@ public class AuthorService extends Printable {
 //        printOpc10();
         System.out.print("   - AUTHOR'S NAME: ");
         String nameA = scaner.nextLine();
-
+        
         List<Author> author = dao.selectAuthorByName(nameA);
         if (author != null) {
             for (Author aux : author) {
                 showAnAuthor(aux);
             }
-
+            
         } else {
             System.out.println("|-------------------------------------------------|");
             System.out.println("|  THE AUTHOR DOES NOT EXIST, PLEASE TRY AGAIN    |");
             System.out.println("|-------------------------------------------------|");
         }
-
+        
     }
 
     //IMPRIMIR AUTORES ---------------------------------------------------------
@@ -127,7 +130,7 @@ public class AuthorService extends Printable {
         }
         System.out.println("|-------------------------------------------------|");
     }
-
+    
     private void showAnAuthor(Author autor) {
         String vID = "___ ID ___", vName = "________________ NAME ________________";
         System.out.println("|-------------------------------------------------|");
@@ -158,5 +161,5 @@ public class AuthorService extends Printable {
         }
         return false;
     }
-
+    
 }

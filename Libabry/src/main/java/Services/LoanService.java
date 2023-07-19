@@ -7,6 +7,7 @@ package Services;
 import Entities.Loan;
 import Persistences.LoanDAO;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -26,6 +27,7 @@ public class LoanService extends Printable {
         this.dao = new LoanDAO();
     }
 
+    //OPCION 5 DEL MENU INSERT
     public void insertLoan() throws Exception {
         LocalDate fechaP;
         //INSTANCIAR OBJETO DE TIPO PRESTAMO
@@ -52,8 +54,11 @@ public class LoanService extends Printable {
 
         //Mostrar los libros para que el usuario seleccione
         servB.showBooks();
+        //Pedir al usuario que escoja el ISBN del libro o seleccione 0 para no insertar ni uno
         System.out.print("   - SELECT A BOOK ISBN OR 0 TO EXIT: ");
         long isbn = scaner.nextLong();
+        /*si la seleccion del usuario no es 0, se procede a setear el atributo LIBRO por el que el 
+        usuario selecciono*/
         if (isbn != 0) {
             loan.setBook(servB.selectABook(isbn));
         }
@@ -66,11 +71,14 @@ public class LoanService extends Printable {
         if (idC != 0) {
             loan.setClient(servC.slectClientID(idC));
         }
+        //Insertar el objeto prestamo en la base de datos
+        dao.insert(loan);
 
+        // Indicarle al usuario que se agrego correctamente
         System.out.println("|-------------------------------------------------|");
         System.out.println("|  LOAN SUCCESSFULLY ADDED TO THE DATABASE        |");
         System.out.println("|-------------------------------------------------|");
-        dao.insert(loan);
-    }
 
+    }
+    
 }

@@ -11,13 +11,18 @@ import java.util.Scanner;
  * @author irina
  */
 public class Service extends Printable {
-
+    //AUTOR --------------------------------------------------------------------
     AuthorService servA = new AuthorService();
+    //EDITORIAL ----------------------------------------------------------------
     EditorialService servE = new EditorialService();
+    //LIBRO --------------------------------------------------------------------
     BookService servB = new BookService();
+    //CLIENTE ------------------------------------------------------------------
     ClientService servC = new ClientService();
+    //PRESTAMO -----------------------------------------------------------------
     LoanService servL = new LoanService();
-
+    //--------------------------------------------------------------------------
+    
     Scanner scaner = new Scanner(System.in);
 
     public Service() {
@@ -50,6 +55,7 @@ public class Service extends Printable {
                 case1();
                 break;
             case 2:
+                case2();
                 break;
             case 3:
                 break;
@@ -74,14 +80,8 @@ public class Service extends Printable {
         }
         /*
         switch (opc) {
-            case 4:
-                servA.deletAuthor();
-                break;
-            case 5:
-                servE.deleteEditorial();
-                break;
             case 6:
-                servB.deleteBook();
+                
                 break;
             case 7:
                 servA.updateAuthor();
@@ -162,4 +162,41 @@ public class Service extends Printable {
 
     }
 
+    //ELIMINAR DATOS EN LA BASE DE DATOS
+    public void case2() {
+        int opc;
+        do {
+            try {
+                //MOSTRAR MENU DE OPCIONES PARA ELIMINAR
+                minieMenuOpc2();
+                opc = scaner.nextInt();
+
+                switch (opc) {
+                    case 1:
+                        servA.deletAuthor();
+                        break;
+                    case 2:
+                        servE.deleteEditorial();
+                        break;
+                    case 3:
+                        servB.deleteBook();
+                        break;
+                    case 4:
+                        servC.deleteClient();
+                        break;
+                    case 5:
+                        
+                        break;
+                    case 6:
+                        break;
+                    default:
+                        System.out.println("OPTION DOES NOT EXIST, TRY AGAIN");
+                }
+            } catch (Exception e) {
+                opc = 19;
+                System.out.println("WRONGLY TYPED OPTION");
+                scaner.nextLine();
+            }
+        } while (opc != 6);
+    }
 }

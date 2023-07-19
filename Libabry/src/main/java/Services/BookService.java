@@ -6,6 +6,7 @@ package Services;
 
 import Entities.Book;
 import Persistences.BookDAO;
+import Persistences.LoanDAO;
 import java.util.List;
 import java.util.Scanner;
 
@@ -26,6 +27,7 @@ public class BookService extends Printable {
         this.dao = new BookDAO();
     }
 
+    //OPCION 3 DEL MENU INSERTAR
     public void insertBook() throws Exception {
         int opcAut;
         List<Book> books = dao.selectBooks();
@@ -77,10 +79,10 @@ public class BookService extends Printable {
 
         //SI LA FUNCION BOOLEANA SE MANTUVO FALSE, SIGNIFICA QUE EL ISBN NO EXISTE
         if (!findBook(book)) {
+            dao.insert(book);
             System.out.println("|-------------------------------------------------|");
             System.out.println("|  BOOK SUCCESSFULLY ADDED TO THE DATABASE        |");
             System.out.println("|-------------------------------------------------|");
-            dao.insert(book);
 
         } else {
             System.out.println("|-------------------------------------------------|");
@@ -89,18 +91,20 @@ public class BookService extends Printable {
         }
     }
 
-    //OPCION 6 DEL MENU
+    //OPCION 3 DEL MENU ELIMINAR
     public void deleteBook() throws Exception {
+        LoanDAO daoL = new LoanDAO();
 
-//        printOpc6();
+        print2Opc3();
         showBooks();
 
         //PEDIR AL USUARIO
-        System.out.print("   - SELECT BOOK ID: ");
+        System.out.print("   - SELECT BOOK ISBN: ");
 
         //INSTANCIAMOS OBJETO DE TIPO BOOK Y LE MANDAMOS EL ID QUE SELECCIONE EL USUARIO
         Book book = dao.selectBookByID(scan.nextLong());
         if (book != null) {
+            daoL.updateBookInNull(book.getIsbn());
             dao.delete(book.getIsbn());
             System.out.println("|-------------------------------------------------|");
             System.out.println("|  BOOK SUCCESSFULLY DELETED FROM THE DATABASE    |");
@@ -281,8 +285,16 @@ public class BookService extends Printable {
             imprimirCasilla(String.valueOf(aux.getIsbn()), vISBN);
             imprimirCasilla(aux.getTitle(), vTitle);
             imprimirCasilla(String.valueOf(aux.getYear()), vYear);
-            imprimirCasilla(aux.getAuthor().getName(), vAuthor);
-            imprimirCasilla(aux.getEditorial().getName(), vEditorial);
+            if (aux.getAuthor() == null) {
+                imprimirCasilla(" ", vAuthor);
+            } else {
+                imprimirCasilla(aux.getAuthor().getName(), vAuthor);
+            }
+            if (aux.getEditorial() == null) {
+                imprimirCasilla(" ", vEditorial);
+            } else {
+                imprimirCasilla(aux.getEditorial().getName(), vEditorial);
+            }
             imprimirCasilla(String.valueOf(aux.getCopies()), vCopies);
             imprimirCasilla(String.valueOf(aux.getBorrowedCopies()), vBC);
             imprimirCasilla(String.valueOf(aux.getRemaininCopies()), vRC);
@@ -306,8 +318,16 @@ public class BookService extends Printable {
         imprimirCasilla(String.valueOf(aux.getIsbn()), vISBN);
         imprimirCasilla(aux.getTitle(), vTitle);
         imprimirCasilla(String.valueOf(aux.getYear()), vYear);
-        imprimirCasilla(aux.getAuthor().getName(), vAuthor);
-        imprimirCasilla(aux.getEditorial().getName(), vEditorial);
+        if (aux.getAuthor() == null) {
+            imprimirCasilla(" ", vAuthor);
+        } else {
+            imprimirCasilla(aux.getAuthor().getName(), vAuthor);
+        }
+        if (aux.getEditorial() == null) {
+            imprimirCasilla(" ", vEditorial);
+        } else {
+            imprimirCasilla(aux.getEditorial().getName(), vEditorial);
+        }
         imprimirCasilla(String.valueOf(aux.getCopies()), vCopies);
         imprimirCasilla(String.valueOf(aux.getBorrowedCopies()), vBC);
         imprimirCasilla(String.valueOf(aux.getRemaininCopies()), vRC);
@@ -331,8 +351,16 @@ public class BookService extends Printable {
             imprimirCasilla(String.valueOf(aux.getIsbn()), vISBN);
             imprimirCasilla(aux.getTitle(), vTitle);
             imprimirCasilla(String.valueOf(aux.getYear()), vYear);
-            imprimirCasilla(aux.getAuthor().getName(), vAuthor);
-            imprimirCasilla(aux.getEditorial().getName(), vEditorial);
+            if (aux.getAuthor() == null) {
+                imprimirCasilla(" ", vAuthor);
+            } else {
+                imprimirCasilla(aux.getAuthor().getName(), vAuthor);
+            }
+            if (aux.getEditorial() == null) {
+                imprimirCasilla(" ", vEditorial);
+            } else {
+                imprimirCasilla(aux.getEditorial().getName(), vEditorial);
+            }
             imprimirCasilla(String.valueOf(aux.getCopies()), vCopies);
             imprimirCasilla(String.valueOf(aux.getBorrowedCopies()), vBC);
             imprimirCasilla(String.valueOf(aux.getRemaininCopies()), vRC);

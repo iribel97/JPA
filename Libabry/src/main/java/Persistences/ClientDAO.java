@@ -18,6 +18,12 @@ public class ClientDAO extends DAO<Client> {
     public void insert(Client objeto) {
         super.insert(objeto);
     }
+    
+    //METODO ELIMINAR CLIENTE --------------------------------------------------
+    public void delete(int idClient) throws Exception {
+        super.delete(selectClientByID(idClient));
+    }
+    
 
     //SELECCIONAR CLIENTE POR ID -----------------------------------------------
     public Client selectClientByID(int idC) throws Exception {

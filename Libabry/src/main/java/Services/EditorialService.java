@@ -47,10 +47,11 @@ public class EditorialService extends Printable {
         }
     }
 
-    //OPCION 5 DEL MENU
+    //OPCION 2 DEL MENU ELIMINAR
     public void deleteEditorial() throws Exception {
+        BookDAO daoB = new BookDAO();
 
-//        printOpc5();
+        print2Opc2();
         showEditorials();
         //PEDIR AL USUARIO
         System.out.print("   - SELECT EDITORIAL ID: ");
@@ -59,6 +60,7 @@ public class EditorialService extends Printable {
         Editorial editorial = dao.selectEditorialByID(scaner.nextInt());
 
         if (editorial != null) {
+            daoB.updateEditorialInNullBook(editorial.getId());
             dao.delete(editorial.getId());
             System.out.println("|-------------------------------------------------|");
             System.out.println("|EDITORIAL SUCCESSFULLY DELETED FROM THE DATABASE |");
