@@ -24,6 +24,14 @@ public class ClientDAO extends DAO<Client> {
         super.delete(selectClientByID(idClient));
     }
     
+    //METODO ACTUALIZAR CLIENTE ------------------------------------------------
+
+    @Override
+    public void update(Client objeto) {
+        super.update(objeto);
+    }
+    
+    
 
     //SELECCIONAR CLIENTE POR ID -----------------------------------------------
     public Client selectClientByID(int idC) throws Exception {

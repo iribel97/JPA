@@ -125,19 +125,18 @@ public class BookService extends Printable {
         int opc;
         print3Opc3();
         try {
-            System.out.println("|-------------------------------------------------|");
-            System.out.print(" SELECT AN OPTION: ");
-            opc = scan.nextInt();
-
             //MOSTRAR LIBROS
             showBooks();
-
             //PEDIR AL USUARIO
             System.out.println("|-------------------------------------------------|");
             System.out.print("   - SELECT BOOK ISBN OR 0 TO EXIT: ");
             long opcISBN = scan.nextLong();
 
             if (opcISBN != 0) {
+                System.out.println("|-------------------------------------------------|");
+                System.out.print(" SELECT AN OPTION: ");
+                opc = scan.nextInt();
+
                 //INSTANCIAMOS OBJETO DE TIPO BOOK Y LE MANDAMOS EL ID QUE SELECCIONE EL USUARIO
                 Book book = dao.selectBookByID(opcISBN);
 
@@ -211,8 +210,10 @@ public class BookService extends Printable {
                         default:
                             System.out.println("OPTION DOES NOT EXIST, TRY AGAIN");
                     }
-                    dao.update(book);
 
+                    if (opc <= 7) {
+                        dao.update(book);
+                    }
                 } else {
                     System.out.println("|-------------------------------------------------|");
                     System.out.println("| THE BOOK DOES NOT EXIST, PLEASE TRY AGAIN       |");

@@ -84,6 +84,67 @@ public class ClientService extends Printable {
 
     }
 
+    //OPCION 4 DEL MENU ACTUALIZAR
+    public void updateClient() {
+        int opc;
+        try {
+            //MOSTRAR CLIENTES
+            printClients();
+
+            //PEDIR AL USUARIO
+            System.out.println("|-------------------------------------------------|");
+            System.out.print("   - SELECT CLIENT ID OR 0 TO EXIT: ");
+            int opcId = scaner.nextInt();
+
+            if (opcId != 0) {
+                
+                //MOSTRAR EL MENU CON LOS CAMPOS QUE EL USUARIO PUEDE MODIFICAR DEL CLIENTE
+                print3Opc4();
+
+                System.out.println("|-------------------------------------------------|");
+                System.out.print(" SELECT AN OPTION: ");
+                opc = scaner.nextInt();
+
+                //SE INSTANCIA UN OBJETO DE TIPO CLIENTE, DONDE GUARDE LA SELECCION DEL USUARIO
+                Client client = dao.selectClientByID(opcId);
+
+                if (client != null) {
+                    switch (opc) {
+                        case 1:
+                            System.out.print("   - NAME:");
+                            client.setName(scaner.next());
+                            break;
+                        case 2:
+                            System.out.print("   - LAST NAME: ");
+                            client.setLastName(scaner.next());
+                            break;
+                        case 3:
+                            System.out.print("   - PHONE: ");
+                            client.setPhone(scaner.next());
+                            break;
+                        default:
+                            System.out.println("OPTION DOES NOT EXIST, TRY AGAIN");
+                            break;
+                    }
+                    if (opc <= 3) {
+                        dao.update(client);
+                    }
+
+                } else {
+                    System.out.println("|-------------------------------------------------|");
+                    System.out.println("| THE CLIENT DOES NOT EXIST, PLEASE TRY AGAIN     |");
+                    System.out.println("|-------------------------------------------------|");
+                }
+
+            }
+
+        } catch (Exception e) {
+            System.out.println("WRONGLY TYPED OPTION");
+            scaner.nextLine();
+        }
+
+    }
+
     //RETORNAR VALORES ---------------------------------------------------------
     /*VERIFICAR QUE EL CLIENTE EXISTA*/
     private boolean findClient(Client client) throws Exception {
@@ -114,9 +175,9 @@ public class ClientService extends Printable {
         //Intanciamos una lista que va a guardar lo que de el dao
         List<Client> clients = dao.selectClient();
 
-        System.out.println("|------------------------------------------------------------------------------|");
-        System.out.println("|                                    CLIENTS                                   |");
-        System.out.println("|------------------------------------------------------------------------------|");
+        System.out.println("|--------------------------------------------------------------------------------|");
+        System.out.println("|                                     CLIENTS                                    |");
+        System.out.println("|--------------------------------------------------------------------------------|");
         System.out.println("|" + vID + "|" + vD + "|" + vName + "|" + vLastN + "|" + vPhone + "|");
 
         if (!clients.isEmpty()) {
@@ -136,6 +197,6 @@ public class ClientService extends Printable {
             imprimirCasilla(" ", vPhone);
             System.out.println("|");
         }
-        System.out.println("|--------------------------------------------------------------------------|");
+        System.out.println("|--------------------------------------------------------------------------------|");
     }
 }

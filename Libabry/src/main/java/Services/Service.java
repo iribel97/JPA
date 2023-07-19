@@ -212,7 +212,7 @@ public class Service extends Printable {
                         servB.updateBook();
                         break;
                     case 4:
-                        
+                        servC.updateClient();
                         break;
                     case 5:
                         

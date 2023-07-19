@@ -181,6 +181,17 @@ public abstract class Printable {
         System.out.println("|    7. REMAINING COPIES                          |");
         System.out.println("|-------------------------------------------------|");
     }
+    
+    //OPCION 4 DEL ACTUALIZAR
+    protected void print3Opc4() {
+        System.out.println("|-------------------------------------------------|");
+        System.out.println("|                  UPDATE CLIENT                  |");
+        System.out.println("|-------------------------------------------------|");
+        System.out.println("|    1. NAME                                      |");
+        System.out.println("|    2. LAST NAME                                 |");
+        System.out.println("|    3. PHONE                                     |");
+        System.out.println("|-------------------------------------------------|");
+    }
 
     //OPCION 4 DEL MENU GENERAL
     protected void minieMenuOpc4() {
