@@ -158,7 +158,7 @@ public class BookService extends Printable {
                         System.out.println("|-------------------------------------------------|");
                         System.out.print("   - REMAINING COPIES: ");
                         book.setRemaininCopies(scan.nextInt());
-                        book.setBorrowedCopies(book.getCopy()-book.getBorrowedCopies());
+                        book.setBorrowedCopies(book.getCopy() - book.getBorrowedCopies());
                         break;
                     default:
                         System.out.println("OPTION DOES NOT EXIST, TRY AGAIN");
@@ -228,7 +228,7 @@ public class BookService extends Printable {
             System.out.println("|-------------------------------------------------|");
         }
     }
-    
+
     //OPCION 14 DEL MENU
     public void showBookByEditorial() throws Exception {
         printOpc13();
@@ -245,18 +245,18 @@ public class BookService extends Printable {
             System.out.println("|-------------------------------------------------|");
         }
     }
-    
+
     //ACTUALIZAR EL ALTA DE LIBROS
-    public void updateRegister() throws Exception{
+    public void updateRegister() throws Exception {
         //DEBEMOS TRAER A TODOS LOS LIBROS DE LA TABLA
         List<Book> books = dao.selectBooks();
-        
+
         //SE COMPRUEBA QUE LA LISTA NO SE ENCUENTRE VACIA
         if (books != null) {
             //SE RECORRE LA LISTA
-            for(Book aux : books){
+            for (Book aux : books) {
                 //PARA CAMBIAR EL ALTA FALSE PRIMERO SE COMPRUEBA QUE LOS LIBROS PRESTADOS SEAN IGUAL AL DE LAS COPIAS
-                if(aux.getCopy() <= aux.getBorrowedCopies()){
+                if (aux.getCopy() <= aux.getBorrowedCopies()) {
                     aux.setRegister(false);
                     dao.update(aux);
                     System.out.println("UPDATE REGISTER FOR " + aux.getTitle());
@@ -267,8 +267,8 @@ public class BookService extends Printable {
                     aux.setRegister(false);
                     dao.update(aux);
                     System.out.println("MISSING PARAMETERS IN " + aux.getTitle());
-                }else if(aux.getAuthor() != null && aux.getEditorial() != null && !aux.getTitle().isBlank()
-                        && aux.getYear() != 0 && aux.getCopy() > aux.getBorrowedCopies()){
+                } else if (aux.getAuthor() != null && aux.getEditorial() != null && !aux.getTitle().isBlank()
+                        && aux.getYear() != 0 && aux.getCopy() > aux.getBorrowedCopies()) {
                     aux.setRegister(true);
                     dao.update(aux);
                 }
@@ -276,7 +276,7 @@ public class BookService extends Printable {
         }
 
     }
-    
+
     //IMPRIMIR LIBROS ----------------------------------------------------------
     public void showBooks() throws Exception {
         //INSTANCIAMOS UNA LISTA DE OBJETOS DE TIPO LIBRO
@@ -296,8 +296,17 @@ public class BookService extends Printable {
             imprimirCasilla(String.valueOf(aux.getIsbn()), vISBN);
             imprimirCasilla(aux.getTitle(), vTitle);
             imprimirCasilla(String.valueOf(aux.getYear()), vYear);
-            imprimirCasilla(aux.getAuthor().getName(), vAuthor);
-            imprimirCasilla(aux.getEditorial().getName(), vEditorial);
+            if (aux.getAuthor() == null) {
+                imprimirCasilla(" ", vAuthor);
+            } else {
+                imprimirCasilla(aux.getAuthor().getName(), vAuthor);
+            }
+            if (aux.getEditorial() == null) {
+                imprimirCasilla(" ", vEditorial);
+            } else {
+                imprimirCasilla(aux.getEditorial().getName(), vEditorial);
+            }
+
             imprimirCasilla(String.valueOf(aux.getCopy()), vCopies);
             imprimirCasilla(String.valueOf(aux.getBorrowedCopies()), vBC);
             imprimirCasilla(String.valueOf(aux.getRemaininCopies()), vRC);
@@ -321,8 +330,16 @@ public class BookService extends Printable {
         imprimirCasilla(String.valueOf(aux.getIsbn()), vISBN);
         imprimirCasilla(aux.getTitle(), vTitle);
         imprimirCasilla(String.valueOf(aux.getYear()), vYear);
-        imprimirCasilla(aux.getAuthor().getName(), vAuthor);
-        imprimirCasilla(aux.getEditorial().getName(), vEditorial);
+        if (aux.getAuthor() == null) {
+            imprimirCasilla(" ", vAuthor);
+        } else {
+            imprimirCasilla(aux.getAuthor().getName(), vAuthor);
+        }
+        if (aux.getEditorial() == null) {
+            imprimirCasilla(" ", vEditorial);
+        } else {
+            imprimirCasilla(aux.getEditorial().getName(), vEditorial);
+        }
         imprimirCasilla(String.valueOf(aux.getCopy()), vCopies);
         imprimirCasilla(String.valueOf(aux.getBorrowedCopies()), vBC);
         imprimirCasilla(String.valueOf(aux.getRemaininCopies()), vRC);
@@ -346,8 +363,16 @@ public class BookService extends Printable {
             imprimirCasilla(String.valueOf(aux.getIsbn()), vISBN);
             imprimirCasilla(aux.getTitle(), vTitle);
             imprimirCasilla(String.valueOf(aux.getYear()), vYear);
-            imprimirCasilla(aux.getAuthor().getName(), vAuthor);
-            imprimirCasilla(aux.getEditorial().getName(), vEditorial);
+            if (aux.getAuthor() == null) {
+                imprimirCasilla(" ", vAuthor);
+            } else {
+                imprimirCasilla(aux.getAuthor().getName(), vAuthor);
+            }
+            if (aux.getEditorial() == null) {
+                imprimirCasilla(" ", vEditorial);
+            } else {
+                imprimirCasilla(aux.getEditorial().getName(), vEditorial);
+            }
             imprimirCasilla(String.valueOf(aux.getCopy()), vCopies);
             imprimirCasilla(String.valueOf(aux.getBorrowedCopies()), vBC);
             imprimirCasilla(String.valueOf(aux.getRemaininCopies()), vRC);
