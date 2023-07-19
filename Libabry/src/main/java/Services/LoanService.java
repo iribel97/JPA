@@ -65,7 +65,7 @@ public class LoanService extends Printable {
         }
 
         //Mostrar clientes para que el usuario seleccione
-        servC.showClients();
+        servC.printClients();
         System.out.print("   - SELECT A CLIENT ID OR 0 TO EXIT: ");
         int idC = scaner.nextInt();
 
@@ -86,20 +86,20 @@ public class LoanService extends Printable {
     public void deleteLoan() throws Exception {
 
         print2Opc5();
-        
+
         showLoans();
-        
+
         //PEDIR AL USUARIO
         System.out.print("   - SELECT LOAN ID: ");
-        
+
         Loan loan = dao.selectLoanByID(scaner.nextInt());
-        
+
         if (loan != null) {
             dao.delete(loan.getId());
             System.out.println("|-------------------------------------------------|");
             System.out.println("|  LOAN SUCCESSFULLY DELETED FROM THE DATABASE    |");
             System.out.println("|-------------------------------------------------|");
-        } else{
+        } else {
             System.out.println("|-------------------------------------------------|");
             System.out.println("| THE LOAN DOES NOT EXIST, PLEASE TRY AGAIN       |");
             System.out.println("|-------------------------------------------------|");
@@ -119,43 +119,50 @@ public class LoanService extends Printable {
         System.out.println("|                                         LOANS                                        |");
         System.out.println("|--------------------------------------------------------------------------------------|");
         System.out.println("|" + vId + "|" + vLD + "|" + vRD + "|" + vBook + "|" + vClient + "|");
+        if (loans != null) {
+            for (Loan aux : loans) {
+                String formarLD = String.valueOf(aux.getLoanDate().getDate() - 1) + " - "
+                        + String.valueOf(aux.getLoanDate().getMonth() + 1) + " - "
+                        + String.valueOf(aux.getLoanDate().getYear() + 1900);
 
-        for (Loan aux : loans) {
-            String formarLD = String.valueOf(aux.getLoanDate().getDate()-1) + " - "
-                    + String.valueOf(aux.getLoanDate().getMonth()+1) + " - " + 
-                    String.valueOf(aux.getLoanDate().getYear() + 1900);
-    
-            String formarRD = String.valueOf(aux.getReturnDate().getDate()-1) + " - "
-                    + String.valueOf(aux.getReturnDate().getMonth()+1) + " - " + 
-                    String.valueOf(aux.getReturnDate().getYear() + 1900);
-            
-            
-            imprimirCasilla(String.valueOf(aux.getId()), vId);
-            if (aux.getLoanDate() == null) {
-                imprimirCasilla(" ", vLD);
-            }else{
-                imprimirCasilla(formarLD, vLD);
+                String formarRD = String.valueOf(aux.getReturnDate().getDate() - 1) + " - "
+                        + String.valueOf(aux.getReturnDate().getMonth() + 1) + " - "
+                        + String.valueOf(aux.getReturnDate().getYear() + 1900);
+
+                imprimirCasilla(String.valueOf(aux.getId()), vId);
+                if (aux.getLoanDate() == null) {
+                    imprimirCasilla(" ", vLD);
+                } else {
+                    imprimirCasilla(formarLD, vLD);
+                }
+
+                if (aux.getReturnDate() == null) {
+                    imprimirCasilla(" ", vRD);
+                } else {
+                    imprimirCasilla(formarRD, vRD);
+                }
+
+                if (aux.getBook() == null) {
+                    imprimirCasilla(" ", vBook);
+                } else {
+                    imprimirCasilla(aux.getBook().getTitle(), vBook);
+                }
+
+                if (aux.getClient() == null) {
+                    imprimirCasilla(" ", vClient);
+                } else {
+                    imprimirCasilla(aux.getClient().getName(), vClient);
+                }
+                System.out.println("|");
             }
-            
-            if (aux.getReturnDate() == null) {
-                imprimirCasilla(" ", vRD);
-            }else{
-                imprimirCasilla(formarRD, vRD);
-            }
-            
-            if (aux.getBook() == null) {
-                imprimirCasilla(" ", vBook);
-            }else{
-                imprimirCasilla(aux.getBook().getTitle(), vBook);
-            }
-            
-            if (aux.getClient() == null) {
-                imprimirCasilla(" ", vClient);
-            }else{
-                imprimirCasilla(aux.getClient().getName(), vClient);
-            }
-            System.out.println("|");
+        } else {
+            imprimirCasilla(" ", vId);
+            imprimirCasilla(" ", vLD);
+            imprimirCasilla(" ", vRD);
+            imprimirCasilla(" ", vBook);
+            imprimirCasilla(" ", vClient);
         }
+
         System.out.println("|--------------------------------------------------------------------------------------|");
     }
 

@@ -281,25 +281,38 @@ public class BookService extends Printable {
         System.out.println("|                                                               BOOKS                                                               |");
         System.out.println("|-----------------------------------------------------------------------------------------------------------------------------------|");
         System.out.println("|" + vISBN + "|" + vTitle + "|" + vYear + "|" + vAuthor + "|" + vEditorial + "|" + vCopies + "|" + vBC + "|" + vRC + "|");
-        for (Book aux : books) {
-            imprimirCasilla(String.valueOf(aux.getIsbn()), vISBN);
-            imprimirCasilla(aux.getTitle(), vTitle);
-            imprimirCasilla(String.valueOf(aux.getYear()), vYear);
-            if (aux.getAuthor() == null) {
-                imprimirCasilla(" ", vAuthor);
-            } else {
-                imprimirCasilla(aux.getAuthor().getName(), vAuthor);
+        if (books != null) {
+            for (Book aux : books) {
+                imprimirCasilla(String.valueOf(aux.getIsbn()), vISBN);
+                imprimirCasilla(aux.getTitle(), vTitle);
+                imprimirCasilla(String.valueOf(aux.getYear()), vYear);
+                if (aux.getAuthor() == null) {
+                    imprimirCasilla(" ", vAuthor);
+                } else {
+                    imprimirCasilla(aux.getAuthor().getName(), vAuthor);
+                }
+                if (aux.getEditorial() == null) {
+                    imprimirCasilla(" ", vEditorial);
+                } else {
+                    imprimirCasilla(aux.getEditorial().getName(), vEditorial);
+                }
+                imprimirCasilla(String.valueOf(aux.getCopies()), vCopies);
+                imprimirCasilla(String.valueOf(aux.getBorrowedCopies()), vBC);
+                imprimirCasilla(String.valueOf(aux.getRemaininCopies()), vRC);
+                System.out.println("|");
             }
-            if (aux.getEditorial() == null) {
-                imprimirCasilla(" ", vEditorial);
-            } else {
-                imprimirCasilla(aux.getEditorial().getName(), vEditorial);
-            }
-            imprimirCasilla(String.valueOf(aux.getCopies()), vCopies);
-            imprimirCasilla(String.valueOf(aux.getBorrowedCopies()), vBC);
-            imprimirCasilla(String.valueOf(aux.getRemaininCopies()), vRC);
+        } else {
+            imprimirCasilla(" ", vISBN);
+            imprimirCasilla(" ", vTitle);
+            imprimirCasilla(" ", vYear);
+            imprimirCasilla(" ", vAuthor);
+            imprimirCasilla(" ", vEditorial);
+            imprimirCasilla(" ", vCopies);
+            imprimirCasilla(" ", vBC);
+            imprimirCasilla(" ", vRC);
             System.out.println("|");
         }
+
         System.out.println("|-----------------------------------------------------------------------------------------------------------------------------------|");
     }
 
@@ -315,23 +328,37 @@ public class BookService extends Printable {
         System.out.println("|                                                               BOOK                                                                |");
         System.out.println("|-----------------------------------------------------------------------------------------------------------------------------------|");
         System.out.println("|" + vISBN + "|" + vTitle + "|" + vYear + "|" + vAuthor + "|" + vEditorial + "|" + vCopies + "|" + vBC + "|" + vRC + "|");
-        imprimirCasilla(String.valueOf(aux.getIsbn()), vISBN);
-        imprimirCasilla(aux.getTitle(), vTitle);
-        imprimirCasilla(String.valueOf(aux.getYear()), vYear);
-        if (aux.getAuthor() == null) {
+
+        if (aux != null) {
+            imprimirCasilla(String.valueOf(aux.getIsbn()), vISBN);
+            imprimirCasilla(aux.getTitle(), vTitle);
+            imprimirCasilla(String.valueOf(aux.getYear()), vYear);
+            if (aux.getAuthor() == null) {
+                imprimirCasilla(" ", vAuthor);
+            } else {
+                imprimirCasilla(aux.getAuthor().getName(), vAuthor);
+            }
+            if (aux.getEditorial() == null) {
+                imprimirCasilla(" ", vEditorial);
+            } else {
+                imprimirCasilla(aux.getEditorial().getName(), vEditorial);
+            }
+            imprimirCasilla(String.valueOf(aux.getCopies()), vCopies);
+
+            imprimirCasilla(String.valueOf(aux.getBorrowedCopies()), vBC);
+            imprimirCasilla(String.valueOf(aux.getRemaininCopies()), vRC);
+            System.out.println("|");
+        } else {
+            imprimirCasilla(" ", vISBN);
+            imprimirCasilla(" ", vTitle);
+            imprimirCasilla(" ", vYear);
             imprimirCasilla(" ", vAuthor);
-        } else {
-            imprimirCasilla(aux.getAuthor().getName(), vAuthor);
-        }
-        if (aux.getEditorial() == null) {
             imprimirCasilla(" ", vEditorial);
-        } else {
-            imprimirCasilla(aux.getEditorial().getName(), vEditorial);
+            imprimirCasilla(" ", vCopies);
+            imprimirCasilla(" ", vBC);
+            imprimirCasilla(" ", vRC);
+            System.out.println("|");
         }
-        imprimirCasilla(String.valueOf(aux.getCopies()), vCopies);
-        imprimirCasilla(String.valueOf(aux.getBorrowedCopies()), vBC);
-        imprimirCasilla(String.valueOf(aux.getRemaininCopies()), vRC);
-        System.out.println("|");
         System.out.println("|-----------------------------------------------------------------------------------------------------------------------------------|");
     }
 
@@ -347,23 +374,35 @@ public class BookService extends Printable {
         System.out.println("|                                                               BOOKS                                                               |");
         System.out.println("|-----------------------------------------------------------------------------------------------------------------------------------|");
         System.out.println("|" + vISBN + "|" + vTitle + "|" + vYear + "|" + vAuthor + "|" + vEditorial + "|" + vCopies + "|" + vBC + "|" + vRC + "|");
-        for (Book aux : books) {
-            imprimirCasilla(String.valueOf(aux.getIsbn()), vISBN);
-            imprimirCasilla(aux.getTitle(), vTitle);
-            imprimirCasilla(String.valueOf(aux.getYear()), vYear);
-            if (aux.getAuthor() == null) {
-                imprimirCasilla(" ", vAuthor);
-            } else {
-                imprimirCasilla(aux.getAuthor().getName(), vAuthor);
+        if (books != null) {
+            for (Book aux : books) {
+                imprimirCasilla(String.valueOf(aux.getIsbn()), vISBN);
+                imprimirCasilla(aux.getTitle(), vTitle);
+                imprimirCasilla(String.valueOf(aux.getYear()), vYear);
+                if (aux.getAuthor() == null) {
+                    imprimirCasilla(" ", vAuthor);
+                } else {
+                    imprimirCasilla(aux.getAuthor().getName(), vAuthor);
+                }
+                if (aux.getEditorial() == null) {
+                    imprimirCasilla(" ", vEditorial);
+                } else {
+                    imprimirCasilla(aux.getEditorial().getName(), vEditorial);
+                }
+                imprimirCasilla(String.valueOf(aux.getCopies()), vCopies);
+                imprimirCasilla(String.valueOf(aux.getBorrowedCopies()), vBC);
+                imprimirCasilla(String.valueOf(aux.getRemaininCopies()), vRC);
+                System.out.println("|");
             }
-            if (aux.getEditorial() == null) {
-                imprimirCasilla(" ", vEditorial);
-            } else {
-                imprimirCasilla(aux.getEditorial().getName(), vEditorial);
-            }
-            imprimirCasilla(String.valueOf(aux.getCopies()), vCopies);
-            imprimirCasilla(String.valueOf(aux.getBorrowedCopies()), vBC);
-            imprimirCasilla(String.valueOf(aux.getRemaininCopies()), vRC);
+        } else {
+            imprimirCasilla(" ", vISBN);
+            imprimirCasilla(" ", vTitle);
+            imprimirCasilla(" ", vYear);
+            imprimirCasilla(" ", vAuthor);
+            imprimirCasilla(" ", vEditorial);
+            imprimirCasilla(" ", vCopies);
+            imprimirCasilla(" ", vBC);
+            imprimirCasilla(" ", vRC);
             System.out.println("|");
         }
         System.out.println("|-----------------------------------------------------------------------------------------------------------------------------------|");

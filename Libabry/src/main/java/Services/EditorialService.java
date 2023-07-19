@@ -106,9 +106,15 @@ public class EditorialService extends Printable {
         System.out.println("|                    EDITORIALS                   |");
         System.out.println("|-------------------------------------------------|");
         System.out.println("|" + vID + "|" + vName + "|");
-        for (Editorial aux : editoriales) {
-            imprimirCasilla(String.valueOf(aux.getId()), vID);
-            imprimirCasilla(aux.getName(), vName);
+        if (editoriales != null) {
+            for (Editorial aux : editoriales) {
+                imprimirCasilla(String.valueOf(aux.getId()), vID);
+                imprimirCasilla(aux.getName(), vName);
+                System.out.println("|");
+            }
+        } else {
+            imprimirCasilla(" ", vID);
+            imprimirCasilla(" ", vName);
             System.out.println("|");
         }
         System.out.println("|-------------------------------------------------|");

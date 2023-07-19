@@ -52,21 +52,21 @@ public class ClientService extends Printable {
         }
 
     }
-    
+
     //OPCION 4 DEL MENU ELIMINAR
-    public void deleteClient() throws Exception{
+    public void deleteClient() throws Exception {
         LoanDAO daoL = new LoanDAO();
-        
+
         print2Opc4();
-        
-        showClients();
-        
+
+        printClients();
+
         //PEDIR AL USUARIO
         System.out.print("   - SELECT CLIENT ID: ");
-        
+
         //INSTANCIAMOS OBJETO DE TIPO CLIENT Y LE MANDAMOS EL ID QUE SELECCIONE EL USUARIO
         Client client = dao.selectClientByID(scaner.nextInt());
-        
+
         if (client != null) {
             daoL.updateClientInNull(client.getId());
             dao.delete(client.getId());
@@ -88,9 +88,8 @@ public class ClientService extends Printable {
 
         if (!clients.isEmpty()) {
             for (Client aux : clients) {
-                if (aux.getDocument() == client.getDocument() || (
-                        aux.getName().equalsIgnoreCase(client.getName()) &&
-                        aux.getLastName().equalsIgnoreCase(client.getLastName()))) {
+                if (aux.getDocument() == client.getDocument() || (aux.getName().equalsIgnoreCase(client.getName())
+                        && aux.getLastName().equalsIgnoreCase(client.getLastName()))) {
                     return true;
                 }
             }
@@ -104,18 +103,19 @@ public class ClientService extends Printable {
     }
 
     //IMPRIMIR CLIENTES --------------------------------------------------------
-    public void showClients() throws Exception {
+    public void printClients() throws Exception {
         String vID = "__ ID __", vD = "____ DOCUMENT ____", vName = "____ NAME ____",
                 vLastN = "____ LAST NAME ____", vPhone = "____ # PHONE ____";
 
         //Intanciamos una lista que va a guardar lo que de el dao
         List<Client> clients = dao.selectClient();
 
+        System.out.println("|------------------------------------------------------------------------------|");
+        System.out.println("|                                    CLIENTS                                   |");
+        System.out.println("|------------------------------------------------------------------------------|");
+        System.out.println("|" + vID + "|" + vD + "|" + vName + "|" + vLastN + "|" + vPhone + "|");
+
         if (!clients.isEmpty()) {
-            System.out.println("|------------------------------------------------------------------------------|");
-            System.out.println("|                                    CLIENTS                                   |");
-            System.out.println("|------------------------------------------------------------------------------|");
-            System.out.println("|" + vID + "|" + vD + "|" + vName + "|" + vLastN + "|" + vPhone + "|");
             for (Client aux : clients) {
                 imprimirCasilla(String.valueOf(aux.getId()), vID);
                 imprimirCasilla(String.valueOf(aux.getDocument()), vD);
@@ -124,8 +124,14 @@ public class ClientService extends Printable {
                 imprimirCasilla(aux.getPhone(), vPhone);
                 System.out.println("|");
             }
-
-            System.out.println("|--------------------------------------------------------------------------|");
+        } else {
+            imprimirCasilla(" ", vID);
+            imprimirCasilla(" ", vD);
+            imprimirCasilla(" ", vName);
+            imprimirCasilla(" ", vLastN);
+            imprimirCasilla(" ", vPhone);
+            System.out.println("|");
         }
+        System.out.println("|--------------------------------------------------------------------------|");
     }
 }
