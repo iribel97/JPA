@@ -62,22 +62,26 @@ public class ClientService extends Printable {
         printClients();
 
         //PEDIR AL USUARIO
-        System.out.print("   - SELECT CLIENT ID: ");
+        System.out.print("   - SELECT CLIENT ID OR 0 TO EXIT: ");
+        int opc = scaner.nextInt();
 
-        //INSTANCIAMOS OBJETO DE TIPO CLIENT Y LE MANDAMOS EL ID QUE SELECCIONE EL USUARIO
-        Client client = dao.selectClientByID(scaner.nextInt());
+        if (opc != 0) {
+            //INSTANCIAMOS OBJETO DE TIPO CLIENT Y LE MANDAMOS EL ID QUE SELECCIONE EL USUARIO
+            Client client = dao.selectClientByID(opc);
 
-        if (client != null) {
-            daoL.updateClientInNull(client.getId());
-            dao.delete(client.getId());
-            System.out.println("|-------------------------------------------------|");
-            System.out.println("|  CLIENT SUCCESSFULLY DELETED FROM THE DATABASE  |");
-            System.out.println("|-------------------------------------------------|");
-        } else {
-            System.out.println("|-------------------------------------------------|");
-            System.out.println("| THE CLIENT DOES NOT EXIST, PLEASE TRY AGAIN     |");
-            System.out.println("|-------------------------------------------------|");
+            if (client != null) {
+                daoL.updateClientInNull(client.getId());
+                dao.delete(client.getId());
+                System.out.println("|-------------------------------------------------|");
+                System.out.println("|  CLIENT SUCCESSFULLY DELETED FROM THE DATABASE  |");
+                System.out.println("|-------------------------------------------------|");
+            } else {
+                System.out.println("|-------------------------------------------------|");
+                System.out.println("| THE CLIENT DOES NOT EXIST, PLEASE TRY AGAIN     |");
+                System.out.println("|-------------------------------------------------|");
+            }
         }
+
     }
 
     //RETORNAR VALORES ---------------------------------------------------------

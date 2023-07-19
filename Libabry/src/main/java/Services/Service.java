@@ -58,6 +58,7 @@ public class Service extends Printable {
                 case2();
                 break;
             case 3:
+                case3();
                 break;
             case 4:
                 break;
@@ -80,17 +81,8 @@ public class Service extends Printable {
         }
         /*
         switch (opc) {
-            case 6:
-                
-                break;
-            case 7:
-                servA.updateAuthor();
-                break;
-            case 8:
-                servE.updateEditorial();
-                break;
             case 9:
-                servB.updateBook();
+                
                 break;
             case 10:
                 servA.showAuthorByName();
@@ -123,7 +115,7 @@ public class Service extends Printable {
         return opc != 13;
     }
 
-    //INSERTAR DATOS EN LA BASE DE DATOS
+    //INSERTAR DATOS EN LA BASE DE DATOS --------------------------------------------------------------------------
     public void case1() {
         int opc;
         do {
@@ -162,7 +154,7 @@ public class Service extends Printable {
 
     }
 
-    //ELIMINAR DATOS EN LA BASE DE DATOS
+    //ELIMINAR DATOS EN LA BASE DE DATOS --------------------------------------------------------------------------
     public void case2() {
         int opc;
         do {
@@ -186,6 +178,44 @@ public class Service extends Printable {
                         break;
                     case 5:
                         servL.deleteLoan();
+                        break;
+                    case 6:
+                        break;
+                    default:
+                        System.out.println("OPTION DOES NOT EXIST, TRY AGAIN");
+                }
+            } catch (Exception e) {
+                opc = 19;
+                System.out.println("WRONGLY TYPED OPTION");
+                scaner.nextLine();
+            }
+        } while (opc != 6);
+    }
+    
+    //ACTUALIZAR DATOS EN LA BASE DE DATOS --------------------------------------------------------------------------
+    public void case3(){
+        int opc;
+        do {
+            try {
+                //MOSTRAR MENU DE OPCIONES PARA ELIMINAR
+                minieMenuOpc3();
+                opc = scaner.nextInt();
+
+                switch (opc) {
+                    case 1:
+                        servA.updateAuthor();
+                        break;
+                    case 2:
+                        servE.updateEditorial();
+                        break;
+                    case 3:
+                        servB.updateBook();
+                        break;
+                    case 4:
+                        
+                        break;
+                    case 5:
+                        
                         break;
                     case 6:
                         break;

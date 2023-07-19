@@ -90,19 +90,22 @@ public class LoanService extends Printable {
         showLoans();
 
         //PEDIR AL USUARIO
-        System.out.print("   - SELECT LOAN ID: ");
+        System.out.print("   - SELECT LOAN ID OR 0 TO EXIT: ");
+        int opc = scaner.nextInt();
 
-        Loan loan = dao.selectLoanByID(scaner.nextInt());
+        if (opc != 0) {
+            Loan loan = dao.selectLoanByID(opc);
 
-        if (loan != null) {
-            dao.delete(loan.getId());
-            System.out.println("|-------------------------------------------------|");
-            System.out.println("|  LOAN SUCCESSFULLY DELETED FROM THE DATABASE    |");
-            System.out.println("|-------------------------------------------------|");
-        } else {
-            System.out.println("|-------------------------------------------------|");
-            System.out.println("| THE LOAN DOES NOT EXIST, PLEASE TRY AGAIN       |");
-            System.out.println("|-------------------------------------------------|");
+            if (loan != null) {
+                dao.delete(loan.getId());
+                System.out.println("|-------------------------------------------------|");
+                System.out.println("|  LOAN SUCCESSFULLY DELETED FROM THE DATABASE    |");
+                System.out.println("|-------------------------------------------------|");
+            } else {
+                System.out.println("|-------------------------------------------------|");
+                System.out.println("| THE LOAN DOES NOT EXIST, PLEASE TRY AGAIN       |");
+                System.out.println("|-------------------------------------------------|");
+            }
         }
 
     }

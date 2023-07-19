@@ -54,43 +54,54 @@ public class AuthorService extends Printable {
 
         print2Opc1();
         showAuthors();
-        System.out.print("   - SELECT THE AUTHOR ID: ");
-        //INSTANCIAMOS UN OBJETO DE TIPO AUTOR
-        Author autor = dao.selectAutorByID(scaner.nextInt());
-        //VERIFICAR QUE EL USUARIO EXISTA
-        if (autor != null) {
-            daoB.updateAuthorInNullBook(autor.getId());
-            dao.delete(autor.getId());
-            System.out.println("|-------------------------------------------------|");
-            System.out.println("|  AUTHOR SUCCESSFULLY DELETED FROM THE DATABASE  |");
-            System.out.println("|-------------------------------------------------|");
-        } else {
-            System.out.println("|-------------------------------------------------|");
-            System.out.println("|  THE AUTHOR DOES NOT EXIST, PLEASE TRY AGAIN    |");
-            System.out.println("|-------------------------------------------------|");
+        System.out.print("   - SELECT THE AUTHOR ID OR 0 TO EXIT: ");
+        int opc = scaner.nextInt();
+
+        if (opc != 0) {
+            //INSTANCIAMOS UN OBJETO DE TIPO AUTOR
+            Author autor = dao.selectAutorByID(opc);
+            //VERIFICAR QUE EL USUARIO EXISTA
+            if (autor != null) {
+                daoB.updateAuthorInNullBook(autor.getId());
+                dao.delete(autor.getId());
+                System.out.println("|-------------------------------------------------|");
+                System.out.println("|  AUTHOR SUCCESSFULLY DELETED FROM THE DATABASE  |");
+                System.out.println("|-------------------------------------------------|");
+            } else {
+                System.out.println("|-------------------------------------------------|");
+                System.out.println("|  THE AUTHOR DOES NOT EXIST, PLEASE TRY AGAIN    |");
+                System.out.println("|-------------------------------------------------|");
+            }
         }
+
     }
 
-    //OPCION 7 DEL MENU
+    //OPCION 1 DEL MENU ACTUALIZAR
     public void updateAuthor() throws Exception {
-//        printOpc7();
+        print3Opc1();
+
+        // MOSTRAR LOS AUTORES
         showAuthors();
-        System.out.print("   - SELECT THE AUTHOR ID: ");
-        //INSTANCIAMOS UN OBJETO DE TIPO AUTOR
-        Author autor = dao.selectAutorByID(scaner.nextInt());
-        if (autor != null) {
-            System.out.println("|-------------------------------------------------|");
-            scaner.nextLine();
-            System.out.print("    - AUTHOR'S NAME: ");
-            autor.setName(scaner.nextLine());
-            dao.update(autor);
-            System.out.println("|-------------------------------------------------|");
-            System.out.println("|  AUTHOR SUCCESSFULLY UPDATED FROM THE DATABASE  |");
-            System.out.println("|-------------------------------------------------|");
-        } else {
-            System.out.println("|-------------------------------------------------|");
-            System.out.println("|  THE AUTHOR DOES NOT EXIST, PLEASE TRY AGAIN    |");
-            System.out.println("|-------------------------------------------------|");
+        System.out.print("   - SELECT THE AUTHOR ID OR 0 TO EXIT: ");
+        int opc = scaner.nextInt();
+
+        if (opc != 0) {
+            //INSTANCIAMOS UN OBJETO DE TIPO AUTOR
+            Author autor = dao.selectAutorByID(opc);
+            if (autor != null) {
+                System.out.println("|-------------------------------------------------|");
+                scaner.nextLine();
+                System.out.print("    - AUTHOR'S NAME: ");
+                autor.setName(scaner.nextLine());
+                dao.update(autor);
+                System.out.println("|-------------------------------------------------|");
+                System.out.println("|  AUTHOR SUCCESSFULLY UPDATED FROM THE DATABASE  |");
+                System.out.println("|-------------------------------------------------|");
+            } else {
+                System.out.println("|-------------------------------------------------|");
+                System.out.println("|  THE AUTHOR DOES NOT EXIST, PLEASE TRY AGAIN    |");
+                System.out.println("|-------------------------------------------------|");
+            }
         }
 
     }
