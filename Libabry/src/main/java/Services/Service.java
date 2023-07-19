@@ -185,7 +185,7 @@ public class Service extends Printable {
                         servC.deleteClient();
                         break;
                     case 5:
-                        
+                        servL.deleteLoan();
                         break;
                     case 6:
                         break;

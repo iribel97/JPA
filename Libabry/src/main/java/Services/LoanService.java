@@ -7,6 +7,7 @@ package Services;
 import Entities.Loan;
 import Persistences.LoanDAO;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -80,5 +81,82 @@ public class LoanService extends Printable {
         System.out.println("|-------------------------------------------------|");
 
     }
+
+    //OPCION 5 DEL MENU ELIMINAR
+    public void deleteLoan() throws Exception {
+
+        print2Opc5();
+        
+        showLoans();
+        
+        //PEDIR AL USUARIO
+        System.out.print("   - SELECT LOAN ID: ");
+        
+        Loan loan = dao.selectLoanByID(scaner.nextInt());
+        
+        if (loan != null) {
+            dao.delete(loan.getId());
+            System.out.println("|-------------------------------------------------|");
+            System.out.println("|  LOAN SUCCESSFULLY DELETED FROM THE DATABASE    |");
+            System.out.println("|-------------------------------------------------|");
+        } else{
+            System.out.println("|-------------------------------------------------|");
+            System.out.println("| THE LOAN DOES NOT EXIST, PLEASE TRY AGAIN       |");
+            System.out.println("|-------------------------------------------------|");
+        }
+
+    }
+
+    //IMPRIMIR PRESTAMOS -------------------------------------------------------
+    public void showLoans() throws Exception {
+        String vId = "__ ID __", vLD = "___ LOAN DATE ___", vRD = "___ RETURN DATE ___",
+                vBook = "______ BOOK ______", vClient = "______ CLIENT ______";
+
+        //TRAER LOS REGISTROS DE LA TABLA
+        List<Loan> loans = dao.selectLoan();
+
+        System.out.println("|--------------------------------------------------------------------------------------|");
+        System.out.println("|                                         LOANS                                        |");
+        System.out.println("|--------------------------------------------------------------------------------------|");
+        System.out.println("|" + vId + "|" + vLD + "|" + vRD + "|" + vBook + "|" + vClient + "|");
+
+        for (Loan aux : loans) {
+            String formarLD = String.valueOf(aux.getLoanDate().getDate()-1) + " - "
+                    + String.valueOf(aux.getLoanDate().getMonth()+1) + " - " + 
+                    String.valueOf(aux.getLoanDate().getYear() + 1900);
     
+            String formarRD = String.valueOf(aux.getReturnDate().getDate()-1) + " - "
+                    + String.valueOf(aux.getReturnDate().getMonth()+1) + " - " + 
+                    String.valueOf(aux.getReturnDate().getYear() + 1900);
+            
+            
+            imprimirCasilla(String.valueOf(aux.getId()), vId);
+            if (aux.getLoanDate() == null) {
+                imprimirCasilla(" ", vLD);
+            }else{
+                imprimirCasilla(formarLD, vLD);
+            }
+            
+            if (aux.getReturnDate() == null) {
+                imprimirCasilla(" ", vRD);
+            }else{
+                imprimirCasilla(formarRD, vRD);
+            }
+            
+            if (aux.getBook() == null) {
+                imprimirCasilla(" ", vBook);
+            }else{
+                imprimirCasilla(aux.getBook().getTitle(), vBook);
+            }
+            
+            if (aux.getClient() == null) {
+                imprimirCasilla(" ", vClient);
+            }else{
+                imprimirCasilla(aux.getClient().getName(), vClient);
+            }
+            System.out.println("|");
+        }
+        System.out.println("|--------------------------------------------------------------------------------------|");
+    }
+
 }

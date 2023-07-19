@@ -94,8 +94,8 @@ public abstract class Printable {
         System.out.println("|  1.- DELETE AUTHOR                              |");  //OK
         System.out.println("|  2.- DELETE EDITORIAL                           |");  //OK
         System.out.println("|  3.- DELETE BOOK                                |");  //OK
-        System.out.println("|  4.- DELETE CLIENT                              |");
-        System.out.println("|  5.- DELETE LOAN                                |");
+        System.out.println("|  4.- DELETE CLIENT                              |");  //OK
+        System.out.println("|  5.- DELETE LOAN                                |");  //OK
         System.out.println("|  6.- EXIT                                       |");
         System.out.println("|-------------------------------------------------|");
         System.out.print("   SELECT AN OPTION : ");
@@ -128,6 +128,13 @@ public abstract class Printable {
         System.out.println("|                  DELETE CLIENT                  |");
         System.out.println("|-------------------------------------------------|");
     }
+    
+    //OPCION 5 DEL ELIMINAR
+    protected void print2Opc5() {
+        System.out.println("|-------------------------------------------------|");
+        System.out.println("|                   DELETE LOAN                   |");
+        System.out.println("|-------------------------------------------------|");
+    }
 
     //OPCION 3 DEL MENU GENERAL
     protected void minieMenuOpc3() {
@@ -137,7 +144,7 @@ public abstract class Printable {
         System.out.println("|  1.- UPDATE AUTHOR                              |");  //OK
         System.out.println("|  2.- UPDATE EDITORIAL                           |");  //OK
         System.out.println("|  3.- UPDATE BOOK                                |");  //OK
-        System.out.println("|  4.- UPDATE CLIENT                              |");
+        System.out.println("|  4.- UPDATE CLIENT                              |");  
         System.out.println("|  5.- UPDATE LOAN                                |");
         System.out.println("|  6.- EXIT                                       |");
         System.out.println("|-------------------------------------------------|");
