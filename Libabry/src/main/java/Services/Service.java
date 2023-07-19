@@ -39,7 +39,7 @@ public class Service extends Printable {
                 //lee la opc del usuario
                 opc = scaner.nextInt();
 
-                if (opc > 13) {
+                if (opc > 9) {
                     System.out.println("OPTION DOES NOT EXIST, TRY AGAIN");
                 }
             } catch (Exception e) {
@@ -48,7 +48,7 @@ public class Service extends Printable {
                 scaner.nextLine();
 
             }
-        } while (opc > 13);
+        } while (opc > 9);
 
         switch (opc) {
             case 1:
@@ -69,14 +69,6 @@ public class Service extends Printable {
             case 7:
                 break;
             case 8:
-                break;
-            case 9:
-                break;
-            case 10:
-                break;
-            case 11:
-                break;
-            case 12:
                 break;
         }
         /*
@@ -112,7 +104,7 @@ public class Service extends Printable {
         }
          */
 
-        return opc != 13;
+        return opc != 9;
     }
 
     //INSERTAR DATOS EN LA BASE DE DATOS --------------------------------------------------------------------------
@@ -215,7 +207,7 @@ public class Service extends Printable {
                         servC.updateClient();
                         break;
                     case 5:
-                        
+                        servL.updateLoan();
                         break;
                     case 6:
                         break;

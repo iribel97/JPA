@@ -123,7 +123,7 @@ public class BookService extends Printable {
     //OPCION 3 DEL MENU ACTUALIZAR
     public void updateBook() {
         int opc;
-        print3Opc3();
+
         try {
             //MOSTRAR LIBROS
             showBooks();
@@ -133,14 +133,17 @@ public class BookService extends Printable {
             long opcISBN = scan.nextLong();
 
             if (opcISBN != 0) {
-                System.out.println("|-------------------------------------------------|");
-                System.out.print(" SELECT AN OPTION: ");
-                opc = scan.nextInt();
 
                 //INSTANCIAMOS OBJETO DE TIPO BOOK Y LE MANDAMOS EL ID QUE SELECCIONE EL USUARIO
                 Book book = dao.selectBookByID(opcISBN);
 
                 if (book != null) {
+                    //MOSTRAR EL MENU CON LOS CAMPOS QUE EL USUARIO PUEDE MODIFICAR DEL LIBRO
+                    print3Opc3();
+                    
+                    System.out.println("|-------------------------------------------------|");
+                    System.out.print(" SELECT AN OPTION: ");
+                    opc = scan.nextInt();
                     switch (opc) {
                         case 1:
                             System.out.println("|-------------------------------------------------|");

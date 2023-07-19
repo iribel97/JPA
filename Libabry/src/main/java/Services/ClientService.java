@@ -97,18 +97,18 @@ public class ClientService extends Printable {
             int opcId = scaner.nextInt();
 
             if (opcId != 0) {
-                
-                //MOSTRAR EL MENU CON LOS CAMPOS QUE EL USUARIO PUEDE MODIFICAR DEL CLIENTE
-                print3Opc4();
-
-                System.out.println("|-------------------------------------------------|");
-                System.out.print(" SELECT AN OPTION: ");
-                opc = scaner.nextInt();
 
                 //SE INSTANCIA UN OBJETO DE TIPO CLIENTE, DONDE GUARDE LA SELECCION DEL USUARIO
                 Client client = dao.selectClientByID(opcId);
 
                 if (client != null) {
+                    //MOSTRAR EL MENU CON LOS CAMPOS QUE EL USUARIO PUEDE MODIFICAR DEL CLIENTE
+                    print3Opc4();
+
+                    System.out.println("|-------------------------------------------------|");
+                    System.out.print(" SELECT AN OPTION: ");
+                    opc = scaner.nextInt();
+                    
                     switch (opc) {
                         case 1:
                             System.out.print("   - NAME:");
@@ -128,6 +128,9 @@ public class ClientService extends Printable {
                     }
                     if (opc <= 3) {
                         dao.update(client);
+                        System.out.println("|-------------------------------------------------|");
+                        System.out.println("|  CLIENT SUCCESSFULLY UPDATED FROM THE DATABASE  |");
+                        System.out.println("|-------------------------------------------------|");
                     }
 
                 } else {

@@ -18,16 +18,12 @@ public abstract class Printable {
         System.out.println("|  1.- INSERT                                     |");  //OK
         System.out.println("|  2.- DELETE                                     |");  //OK
         System.out.println("|  3.- UPDATE                                     |");
-        System.out.println("|  4.- SEARCH AN AUTHOR BY NAME                   |");  //OK
-        System.out.println("|  5.- SEARCH A BOOK BY ISBN                      |");  //OK
-        System.out.println("|  6.- SEARCH A BOOK BY TITLE                     |");  //OK
-        System.out.println("|  7.- SEARCH BOOKS BY AUTHOR                     |");  //OK
-        System.out.println("|  8.- SEARCH BOOKS BY EDITORIAL                  |");  //OK
-        System.out.println("|  9.- SHOW BOOKS                                 |");  //OK
-        System.out.println("| 10.- SHOW EDITORIALS                            |");  //OK
-        System.out.println("| 11.- SHOW AUTHORS                               |");
-        System.out.println("| 12.- SHOW CLIENTS                               |");
-        System.out.println("| 13.- EXIT                                       |");
+        System.out.println("|  4.- SEARCH                                     |");  
+        System.out.println("|  5.- SHOW BOOKS                                 |");  //OK
+        System.out.println("|  6.- SHOW EDITORIALS                            |");  //OK
+        System.out.println("|  7.- SHOW AUTHORS                               |");
+        System.out.println("|  8.- SHOW CLIENTS                               |");
+        System.out.println("|  9.- EXIT                                       |");
         System.out.println("|-------------------------------------------------|");
         System.out.print("   SELECT AN OPTION : ");
     }
@@ -146,7 +142,7 @@ public abstract class Printable {
         System.out.println("|  1.- UPDATE AUTHOR                              |");  //OK
         System.out.println("|  2.- UPDATE EDITORIAL                           |");  //OK
         System.out.println("|  3.- UPDATE BOOK                                |");  //OK
-        System.out.println("|  4.- UPDATE CLIENT                              |");
+        System.out.println("|  4.- UPDATE CLIENT                              |");  //OK
         System.out.println("|  5.- UPDATE LOAN                                |");
         System.out.println("|  6.- EXIT                                       |");
         System.out.println("|-------------------------------------------------|");
@@ -190,6 +186,18 @@ public abstract class Printable {
         System.out.println("|    1. NAME                                      |");
         System.out.println("|    2. LAST NAME                                 |");
         System.out.println("|    3. PHONE                                     |");
+        System.out.println("|-------------------------------------------------|");
+    }
+    
+    //OPCION 5 DEL ACTUALIZAR
+    protected void print3Opc5() {
+        System.out.println("|-------------------------------------------------|");
+        System.out.println("|                  UPDATE LOAN                    |");
+        System.out.println("|-------------------------------------------------|");
+        System.out.println("|    1. LOAN DATE                                 |");
+        System.out.println("|    2. RETURN DATE                               |");
+        System.out.println("|    3. BOOK                                      |");
+        System.out.println("|    4. CLIENT                                    |");
         System.out.println("|-------------------------------------------------|");
     }
 
