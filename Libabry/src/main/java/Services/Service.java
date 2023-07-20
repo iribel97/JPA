@@ -39,7 +39,7 @@ public class Service extends Printable {
                 //lee la opc del usuario
                 opc = scaner.nextInt();
 
-                if (opc > 9) {
+                if (opc > 10) {
                     System.out.println("OPTION DOES NOT EXIST, TRY AGAIN");
                 }
             } catch (Exception e) {
@@ -48,7 +48,7 @@ public class Service extends Printable {
                 scaner.nextLine();
 
             }
-        } while (opc > 9);
+        } while (opc > 10);
 
         switch (opc) {
             case 1:
@@ -61,50 +61,43 @@ public class Service extends Printable {
                 case3();
                 break;
             case 4:
+                case4();
                 break;
             case 5:
+                servB.showBooks();
                 break;
             case 6:
+                servE.showEditorials();
                 break;
             case 7:
+                servA.showAuthors();
                 break;
             case 8:
+                servC.printClients();
+                break;
+            case 9:
+                servL.showLoans();
                 break;
         }
         /*
         switch (opc) {
-            case 9:
+            case 14:
                 
                 break;
-            case 10:
-                servA.showAuthorByName();
-                break;
-            case 11:
-                servB.showBookByISBN();
-                break;
-            case 12:
-                servB.showBookByTitle();
-                break;
-            case 13:
-                servB.showBookByAuthor();
-                break;
-            case 14:
-                servB.showBookByEditorial();
-                break;
             case 15:
-                servB.showBooks();
+                
                 break;
             case 16:
-                servE.showEditorials();
+                
                 break;
             case 17:
-                servA.showAuthors();
+                
                 break;
 
         }
          */
 
-        return opc != 9;
+        return opc != 10;
     }
 
     //INSERTAR DATOS EN LA BASE DE DATOS --------------------------------------------------------------------------
@@ -220,5 +213,46 @@ public class Service extends Printable {
                 scaner.nextLine();
             }
         } while (opc != 6);
+    }
+    
+    //BUSCAR DATOS EN LA BASE DE DATOS --------------------------------------------------------------------------
+     public void case4(){
+        int opc;
+        do {
+            try {
+                //MOSTRAR MENU DE OPCIONES PARA ELIMINAR
+                minieMenuOpc4();
+                opc = scaner.nextInt();
+
+                switch (opc) {
+                    case 1:
+                        servA.showAuthorByName();
+                        break;
+                    case 2:
+                        servB.showBookByISBN();
+                        break;
+                    case 3:
+                        servB.showBookByTitle();
+                        break;
+                    case 4:
+                        servB.showBookByAuthor();
+                        break;
+                    case 5:
+                        servB.showBookByEditorial();
+                        break;
+                    case 6:
+                        servL.searchLoanByClient();
+                        break;
+                    case 7:
+                        break;
+                    default:
+                        System.out.println("OPTION DOES NOT EXIST, TRY AGAIN");
+                }
+            } catch (Exception e) {
+                opc = 19;
+                System.out.println("WRONGLY TYPED OPTION");
+                scaner.nextLine();
+            }
+        } while (opc != 7);
     }
 }

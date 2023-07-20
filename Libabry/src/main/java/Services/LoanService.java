@@ -267,6 +267,90 @@ public class LoanService extends Printable {
         }
     }
 
+    //OPCION 6 DEL MENU BUSCAR ------------------------------------------------
+    public void searchLoanByClient() throws Exception {
+        print4Opc6();
+        System.out.print("   - CLIENT'S NAME: ");
+        String nameC = scaner.next();
+
+        List<Loan> loans = dao.selectLoanByClient(nameC);
+
+        printLoansByFilter(loans);
+
+        if (loans == null) {
+            System.out.println("|-------------------------------------------------|");
+            System.out.println("| MAYBE THE CLIENT DOES NOT EXIST,                |");
+            System.out.println("| OR THE CLIENT DOES NOT HAVE LOANS. PLEASE TRY   |");
+            System.out.println("| PLEASE TRY AGAIN                                |");
+            System.out.println("|-------------------------------------------------|");
+        }
+    }
+
+    //IMPRIMIR POR FILTRO ------------------------------------------------------
+    private void printLoansByFilter(List<Loan> loans) {
+        String vId = "__ ID __", vLD = "___ LOAN DATE ___", vRD = "___ RETURN DATE ___",
+                vBook = "______ BOOK ______", vClient = "______ CLIENT ______", formarLD, formarRD;
+
+        System.out.println("|--------------------------------------------------------------------------------------|");
+        System.out.println("|                                         LOANS                                        |");
+        System.out.println("|--------------------------------------------------------------------------------------|");
+        System.out.println("|" + vId + "|" + vLD + "|" + vRD + "|" + vBook + "|" + vClient + "|");
+        if (loans != null) {
+            for (Loan aux : loans) {
+                if (aux.getLoanDate() != null) {
+                    formarLD = String.valueOf(aux.getLoanDate().getDate()) + " - "
+                            + String.valueOf(aux.getLoanDate().getMonth() + 1) + " - "
+                            + String.valueOf(aux.getLoanDate().getYear() + 1900);
+                } else {
+                    formarLD = " ";
+                }
+
+                if (aux.getReturnDate() != null) {
+                    formarRD = String.valueOf(aux.getReturnDate().getDate()) + " - "
+                            + String.valueOf(aux.getReturnDate().getMonth() + 1) + " - "
+                            + String.valueOf(aux.getReturnDate().getYear() + 1900);
+                } else {
+                    formarRD = " ";
+                }
+
+                imprimirCasilla(String.valueOf(aux.getId()), vId);
+                if (aux.getLoanDate() == null) {
+                    imprimirCasilla(" ", vLD);
+                } else {
+                    imprimirCasilla(formarLD, vLD);
+                }
+
+                if (aux.getReturnDate() == null) {
+                    imprimirCasilla(" ", vRD);
+                } else {
+                    imprimirCasilla(formarRD, vRD);
+                }
+
+                if (aux.getBook() == null) {
+                    imprimirCasilla(" ", vBook);
+                } else {
+                    imprimirCasilla(aux.getBook().getTitle(), vBook);
+                }
+
+                if (aux.getClient() == null) {
+                    imprimirCasilla(" ", vClient);
+                } else {
+                    imprimirCasilla(aux.getClient().getName(), vClient);
+                }
+                System.out.println("|");
+            }
+        } else {
+            imprimirCasilla(" ", vId);
+            imprimirCasilla(" ", vLD);
+            imprimirCasilla(" ", vRD);
+            imprimirCasilla(" ", vBook);
+            imprimirCasilla(" ", vClient);
+            System.out.println("|");
+        }
+
+        System.out.println("|--------------------------------------------------------------------------------------|");
+    }
+
     //IMPRIMIR PRESTAMOS -------------------------------------------------------
     public void showLoans() throws Exception {
         String vId = "__ ID __", vLD = "___ LOAN DATE ___", vRD = "___ RETURN DATE ___",

@@ -140,7 +140,7 @@ public class BookService extends Printable {
                 if (book != null) {
                     //MOSTRAR EL MENU CON LOS CAMPOS QUE EL USUARIO PUEDE MODIFICAR DEL LIBRO
                     print3Opc3();
-                    
+
                     System.out.println("|-------------------------------------------------|");
                     System.out.print(" SELECT AN OPTION: ");
                     opc = scan.nextInt();
@@ -231,9 +231,9 @@ public class BookService extends Printable {
 
     }
 
-    //OPCION 11 DEL MENU
+    //OPCION 2 DEL MENU BUSCAR
     public void showBookByISBN() throws Exception {
-//        printOpc11();
+        print4Opc2();
         System.out.print("  - BOOK'S ISBN: ");
         long isbnB = scan.nextLong();
 
@@ -248,9 +248,9 @@ public class BookService extends Printable {
         }
     }
 
-    //OPCION 12 DEL MENU
+    //OPCION 3 DEL MENU BUSCAR
     public void showBookByTitle() throws Exception {
-//        printOpc12();
+        print4Opc3();
         System.out.print("   - BOOK'S TITLE: ");
         String titleB = scan.nextLine();
 
@@ -265,9 +265,10 @@ public class BookService extends Printable {
         }
     }
 
-    //OPCION 13 DEL MENU
+    //OPCION 4 DEL MENU BUSCAR
     public void showBookByAuthor() throws Exception {
-//        printOpc13();
+        print4Opc4();
+        servA.showAuthors();
         System.out.print("   - AUTHOR'S NAME: ");
         String authorB = scan.nextLine();
 
@@ -277,14 +278,16 @@ public class BookService extends Printable {
             showManyBooks(books);
         } else {
             System.out.println("|-------------------------------------------------|");
-            System.out.println("| THE AUTHOR DOES NOT EXIST, PLEASE TRY AGAIN     |");
+            System.out.println("| THE AUTHOR DOES NOT HAVE A BOOK IN THE DATA BASE|");
+            System.out.println("| PLEASE TRY AGAIN                                |");
             System.out.println("|-------------------------------------------------|");
         }
     }
 
-    //OPCION 14 DEL MENU
+    //OPCION 5 DEL MENU BUSCAR
     public void showBookByEditorial() throws Exception {
-//        printOpc13();
+        print4Opc5();
+        servE.showEditorials();
         System.out.print("   - EDITORIAL'S NAME: ");
         String editorialB = scan.nextLine();
 
@@ -294,7 +297,8 @@ public class BookService extends Printable {
             showManyBooks(books);
         } else {
             System.out.println("|-------------------------------------------------|");
-            System.out.println("| THE AUTHOR DOES NOT EXIST, PLEASE TRY AGAIN     |");
+            System.out.println("| THE EDITORIAL DOES NOT HAVE A BOOK IN THE DATA  |");
+            System.out.println("| BASE PLEASE TRY AGAIN                           |");
             System.out.println("|-------------------------------------------------|");
         }
     }

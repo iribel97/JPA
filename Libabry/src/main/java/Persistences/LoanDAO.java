@@ -4,6 +4,7 @@
  */
 package Persistences;
 
+import Entities.Client;
 import Entities.Loan;
 import java.util.List;
 
@@ -18,13 +19,11 @@ public class LoanDAO extends DAO<Loan> {
     public void insert(Loan objeto) {
         super.insert(objeto);
     }
-    
+
     //METODO ELIMINAR PRESTAMO -------------------------------------------------
     public void delete(int ID) throws Exception {
         super.delete(selectLoanByID(ID));
     }
-    
-    
 
     //METODO ACTUALIZAR PRESTAMO -----------------------------------------------
     @Override
@@ -51,7 +50,7 @@ public class LoanDAO extends DAO<Loan> {
             throw new Exception("ERROR IN DAO LOAN, METHOD updateBookInNull: ", e);
         }
     }
-    
+
     //CAMBIAR DE PARAMETRO DE CLIENTE EN NULL CUANDO SE ELIMINE UN CLIENTE QUE SE ENCUENTRE EN LA TABLA PRESTAMO
     public void updateClientInNull(int idClient) throws Exception {
         try {
@@ -71,9 +70,9 @@ public class LoanDAO extends DAO<Loan> {
             throw new Exception("ERROR IN DAO LOAN, METHOD updateBookInNull: ", e);
         }
     }
-    
+
     //RETORNAR PRESTAMO POR ID -------------------------------------------------
-    public Loan selectLoanByID (int idLoan) throws Exception{
+    public Loan selectLoanByID(int idLoan) throws Exception {
         try {
 
             //se conecta a la base de datos
@@ -91,7 +90,7 @@ public class LoanDAO extends DAO<Loan> {
         } catch (Exception e) {
             throw new Exception("ERROR IN DAO LOAN, METHOD selectLoanByID: ", e);
         }
-        
+
     }
 
     //LISTADO DE TODOS LOS PRESTAMOS -------------------------------------------
@@ -111,6 +110,36 @@ public class LoanDAO extends DAO<Loan> {
             return loans;
         } catch (Exception e) {
             throw new Exception("ERROR IN DAO LOAN, METHOD selectLoan: ", e);
+        }
+    }
+
+    //SELECCIONAR LIBROS POR AUTOR ---------------------------------------------
+    public List<Loan> selectLoanByClient(String nombreClient) throws Exception {
+        try {
+            ClientDAO daoC = new ClientDAO();
+
+            Client client = daoC.selectClientByName(nombreClient);
+
+            if (client != null) {
+
+                //se conecta a la base de datos
+                conect();
+
+                //pedimos por medio de un query todos los clientes
+                List<Loan> loans = em.createQuery("SELECT l FROM Loan l WHERE l.client = :client", Loan.class)
+                        .setParameter("client", client)
+                        .getResultList();
+
+                //desconectamos de la base de datos
+                desconect();
+
+                //retornamos la list
+                return loans;
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
+            throw new Exception("ERROR IN DAO LOAN, METHOD selectLoanByClient: ", e);
         }
     }
 

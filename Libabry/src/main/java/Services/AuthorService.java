@@ -106,9 +106,9 @@ public class AuthorService extends Printable {
 
     }
 
-    //OPCION 10 DEL MENU
+    //OPCION 1 DEL MENU BUSCAR
     public void showAuthorByName() throws Exception {
-//        printOpc10();
+        print4Opc1();
         System.out.print("   - AUTHOR'S NAME: ");
         String nameA = scaner.nextLine();
 

@@ -55,6 +55,31 @@ public class ClientDAO extends DAO<Client> {
             throw new Exception("ERROR IN DAO CLIENT, METHOD selectClientByID: ", e);
         }
     }
+    
+    //SELECCIONAR CLIENTE POR NOMBRE -------------------------------------------
+    public Client selectClientByName(String nameC) throws Exception{
+        try {
+            //Caso de que nameC sea null
+            if (nameC.isBlank()) {
+                throw new Exception("Debe de especificar el nombre del cliente");
+            }
+
+            //se conecta a la base de datos
+            conect();
+
+            //BUSCAR EL CLIENTE
+            Client client = em.createQuery("SELECT c FROM Client c WHERE c.name = :nombre", Client.class)
+                    .setParameter("nombre", nameC)
+                    .getSingleResult();
+
+            desconect();
+
+            return client;
+
+        } catch (Exception e) {
+            throw new Exception("ERROR IN DAO CLIENT, METHOD selectClientByName: ", e);
+        }
+    }
 
     //LISTADO DE TODOS LOS CLIENTES --------------------------------------------
     public List<Client> selectClient() throws Exception {

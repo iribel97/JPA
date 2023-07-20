@@ -17,13 +17,14 @@ public abstract class Printable {
         System.out.println("|-------------------------------------------------|");
         System.out.println("|  1.- INSERT                                     |");  //OK
         System.out.println("|  2.- DELETE                                     |");  //OK
-        System.out.println("|  3.- UPDATE                                     |");
-        System.out.println("|  4.- SEARCH                                     |");  
+        System.out.println("|  3.- UPDATE                                     |");  //OK
+        System.out.println("|  4.- SEARCH                                     |");  //OK
         System.out.println("|  5.- SHOW BOOKS                                 |");  //OK
         System.out.println("|  6.- SHOW EDITORIALS                            |");  //OK
-        System.out.println("|  7.- SHOW AUTHORS                               |");
-        System.out.println("|  8.- SHOW CLIENTS                               |");
-        System.out.println("|  9.- EXIT                                       |");
+        System.out.println("|  7.- SHOW AUTHORS                               |");  //OK
+        System.out.println("|  8.- SHOW CLIENTS                               |");  //OK
+        System.out.println("|  9.- SHOW LOANS                                 |");  //OK
+        System.out.println("| 10.- EXIT                                       |");
         System.out.println("|-------------------------------------------------|");
         System.out.print("   SELECT AN OPTION : ");
     }
@@ -143,7 +144,7 @@ public abstract class Printable {
         System.out.println("|  2.- UPDATE EDITORIAL                           |");  //OK
         System.out.println("|  3.- UPDATE BOOK                                |");  //OK
         System.out.println("|  4.- UPDATE CLIENT                              |");  //OK
-        System.out.println("|  5.- UPDATE LOAN                                |");
+        System.out.println("|  5.- UPDATE LOAN                                |");  //OK
         System.out.println("|  6.- EXIT                                       |");
         System.out.println("|-------------------------------------------------|");
         System.out.print("   SELECT AN OPTION : ");
@@ -177,7 +178,7 @@ public abstract class Printable {
         System.out.println("|    7. REMAINING COPIES                          |");
         System.out.println("|-------------------------------------------------|");
     }
-    
+
     //OPCION 4 DEL ACTUALIZAR
     protected void print3Opc4() {
         System.out.println("|-------------------------------------------------|");
@@ -188,7 +189,7 @@ public abstract class Printable {
         System.out.println("|    3. PHONE                                     |");
         System.out.println("|-------------------------------------------------|");
     }
-    
+
     //OPCION 5 DEL ACTUALIZAR
     protected void print3Opc5() {
         System.out.println("|-------------------------------------------------|");
@@ -201,7 +202,9 @@ public abstract class Printable {
         System.out.println("|-------------------------------------------------|");
     }
 
-    //OPCION 4 DEL MENU GENERAL
+    /* -------------------------------------------------------------------------------------------------------------
+    OPCION 4 DEL MENU GENERAL
+     */
     protected void minieMenuOpc4() {
         System.out.println("|-------------------------------------------------|");
         System.out.println("|                 OPTIONS SEARCH                  |");
@@ -211,39 +214,51 @@ public abstract class Printable {
         System.out.println("|  3.- SEARCH A BOOK BY TITLE                     |");  //OK
         System.out.println("|  4.- SEARCH BOOKS BY AUTHOR                     |");  //OK
         System.out.println("|  5.- SEARCH BOOKS BY EDITORIAL                  |");  //OK
-        System.out.println("|  6.- SEARCH LOANS BY CLIENT                     |");
+        System.out.println("|  6.- SEARCH LOANS BY CLIENT                     |");  //OK
         System.out.println("|  7.- EXIT                                       |");
         System.out.println("|-------------------------------------------------|");
         System.out.print("   SELECT AN OPTION : ");
     }
 
-    protected void printOpc10() {
+    //OPCION 1 DEL BUSCAR
+    protected void print4Opc1() {
         System.out.println("|-------------------------------------------------|");
-        System.out.println("|                 SELECT AN AUTHOR                |");
-        System.out.println("|-------------------------------------------------|");
-    }
-
-    protected void printOpc11() {
-        System.out.println("|-------------------------------------------------|");
-        System.out.println("|              SELECT A BOOK BY ISBN              |");
+        System.out.println("|            SEARCH AN AUTHOR BY NAME             |");
         System.out.println("|-------------------------------------------------|");
     }
 
-    protected void printOpc12() {
+    //OPCION 2 DEL BUSCAR
+    protected void print4Opc2() {
         System.out.println("|-------------------------------------------------|");
-        System.out.println("|              SELECT A BOOK BY TITLE             |");
-        System.out.println("|-------------------------------------------------|");
-    }
-
-    protected void printOpc13() {
-        System.out.println("|-------------------------------------------------|");
-        System.out.println("|          SELECT A BOOK BY AUTHOR'S NAME         |");
+        System.out.println("|              SEARCH A BOOK BY ISBN              |");
         System.out.println("|-------------------------------------------------|");
     }
 
-    protected void printOpc14() {
+    //OPCION 3 DEL BUSCAR
+    protected void print4Opc3() {
         System.out.println("|-------------------------------------------------|");
-        System.out.println("|            SELECT A BOOK BY EDITORIAL           |");
+        System.out.println("|              SEARCH A BOOK BY TITLE             |");
+        System.out.println("|-------------------------------------------------|");
+    }
+
+    //OPCION 4 DEL BUSCAR
+    protected void print4Opc4() {
+        System.out.println("|-------------------------------------------------|");
+        System.out.println("|           SEARCH BOOKS BY AUTHOR'S NAME         |");
+        System.out.println("|-------------------------------------------------|");
+    }
+
+    //OPCION 5 DEL BUSCAR
+    protected void print4Opc5() {
+        System.out.println("|-------------------------------------------------|");
+        System.out.println("|             SEARCH BOOKS BY EDITORIAL           |");
+        System.out.println("|-------------------------------------------------|");
+    }
+    
+    //OPCION 6 DEL BUSCAR
+    protected void print4Opc6() {
+        System.out.println("|-------------------------------------------------|");
+        System.out.println("|              SEARCH LOANS BY CLIENT             |");
         System.out.println("|-------------------------------------------------|");
     }
 
